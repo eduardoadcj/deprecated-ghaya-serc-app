@@ -1,0 +1,253 @@
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../../../assets/imgs/logo.png" alt="" height="150">
+        <h2>Cadastro VIP</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group
+            has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8 order-md-1 mb-4">
+            <h4 class="mb-3">Informações sobre você</h4>
+            <form class="needs-validation">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="nome">Seu nome completo:</label>
+                        <input type="text" class="form-control" id="nome" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            O nome deve ser preenchido!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Seu email: <span class="text-muted">(Opcional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="email@exemplo.com">
+                    <div class="invalid-feedback">
+                        Informe um email válido.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="whatsapp">Seu Whatsapp:</label>
+                    <input mask="(99) 99999-9999" type="text" class="form-control" id="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
+                    <div class="invalid-feedback">
+                        Informe o seu número whatsapp
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cpf">Seu CPF:</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="XXX.XXX.XXX-XX" required>
+                    <div class="invalid-feedback">
+                        Informe o seu CPF
+                    </div>
+                    <small id="cpfHelp" class="form-text text-muted">Não se preocupe, guardaremos esta informação com carinho.</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="numeroCalcado">Quanto você calça?</label>
+                        <select class="custom-select d-block w-100" id="numeroCalcado" required>
+                            <option value="">Escolher...</option>
+                            <option>34</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione um número válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="numeroJeans">Qual o tamanho do jeans que você usa?</label>
+                        <select class="custom-select d-block w-100" id="numeroJeans" required>
+                            <option value="">Escolher...</option>
+                            <option>40</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione um número válido.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nascimento">Quando você nasceu? <span class="text-muted">(Opcional)</span></label>
+                    <input type="text" class="form-control" id="nascimento" placeholder="XX/XX/XXXX">
+                </div>
+
+                <hr class="mb-4">
+                
+                <h5 class="mb-3">Endereço da sua casa</h5>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
+                        <input type="text" class="form-control" id="cepCasa" placeholder="XX.XXX-XXX">
+                    </div>
+
+                    <div class="col-md-2 mb-3">
+                        <label for="estadoCasa">Estado: </label>
+                        <select class="custom-select d-block w-100" id="estadoCasa" required>
+                            <option value="">--</option>
+                            <option>PR</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione um estado válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cidadeCasa">Cidade:</label>
+                        <select class="custom-select d-block w-100" id="cidadeCasa" required>
+                            <option value="">--</option>
+                            <option>Paranavaí</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione um número válido.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="bairroCasa">Bairro:</label>
+                        <input type="text" class="form-control" id="bairroCasa" required>
+                        <div class="invalid-feedback">
+                            Informe o seu bairro.
+                        </div>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="ruaCasa">Rua: </label>
+                        <input type="text" class="form-control" id="ruaCasa" required>
+                        <div class="invalid-feedback">
+                            Informe a sua rua.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label for="numeroCasa">Número: </label>
+                        <input type="number" class="form-control" id="numeroCasa">
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
+                        <input type="text" class="form-control" id="complementoCasa">
+                    </div>
+
+                </div>
+
+                <hr class="mb-4">
+
+                <h5 class="mb-3">Endereço do seu trabalho <span class="text-muted">(Opcional)</span></h5>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
+                        <input type="text" class="form-control" id="cepTrabalho" placeholder="XX.XXX-XXX">
+                    </div>
+
+                    <div class="col-md-2 mb-3">
+                        <label for="estadoTrabalho">Estado: </label>
+                        <select class="custom-select d-block w-100" id="estadoTrabalho" required>
+                            <option value="">--</option>
+                            <option>PR</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione um estado válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cidadeTrabalho">Cidade:</label>
+                        <select class="custom-select d-block w-100" id="cidadeTrabalho" required>
+                            <option value="">--</option>
+                            <option>Paranavaí</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Selecione um número válido.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="bairroTrabalho">Bairro:</label>
+                        <input type="text" class="form-control" id="bairroTrabalho" required>
+                        <div class="invalid-feedback">
+                            Informe o seu bairro.
+                        </div>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <label for="ruaTrabalho">Rua: </label>
+                        <input type="text" class="form-control" id="ruaTrabalho" required>
+                        <div class="invalid-feedback">
+                            Informe a sua rua.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label for="numeroTrabalho">Número: </label>
+                        <input type="number" class="form-control" id="numeroTrabalho">
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <label for="complementoTrabalho">Complemento: <span class="text-muted">(Opcional)</span></label>
+                        <input type="text" class="form-control" id="complementoTrabalho">
+                    </div>
+
+                </div>
+
+                <hr class="mb-4">
+
+                <button class="btn btn-secondary btn-lg btn-block" type="submit">Prosseguir</button>
+
+            </form>
+        </div>
+
+        <div class="col-md-4 order-md-2">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Vantagens</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Tapão</h6>
+                        <small class="text-muted">Você recebe um super tapão dado exclusivamente por nossa equipe!</small>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Pancada</h6>
+                        <small class="text-muted">Ganhe pancadas por um bom preço</small>
+                    </div>
+                    <span class="text-muted">10% OFF</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">Desconto em compra</h6>
+                        <small>Na compra de qualquer produto na loja</small>
+                    </div>
+                    <span class="text-success">-20%</span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2020 Ghaya Exclusive</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacidade</a></li>
+            <li class="list-inline-item"><a href="#">Suporte</a></li>
+        </ul>
+    </footer>
+
+</div>

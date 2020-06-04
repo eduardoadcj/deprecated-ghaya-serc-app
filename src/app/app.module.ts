@@ -9,6 +9,7 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './core/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CadastroClienteComponent } from './cliente/cadastro-cliente/cadastro-cliente.component';
 
 
 const firebaseConfig = {
@@ -25,7 +26,8 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    CadastroClienteComponent
   ],
   imports: [
     BrowserModule,
