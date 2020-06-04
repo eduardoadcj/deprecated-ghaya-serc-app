@@ -10,18 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './core/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CadastroClienteComponent } from './cliente/cadastro-cliente/cadastro-cliente.component';
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDCFgO-Vk22uBpIFP73OgOmwYIFgsWx6hk",
-  authDomain: "serc-app-9bda0.firebaseapp.com",
-  databaseURL: "https://serc-app-9bda0.firebaseio.com",
-  projectId: "serc-app-9bda0",
-  storageBucket: "serc-app-9bda0.appspot.com",
-  messagingSenderId: "928701718829",
-  appId: "1:928701718829:web:33e3d6f2ba943fa5b9b3a4",
-  measurementId: "G-PCYZVTSGF5"
-}
+import { firebaseConfig } from 'src/environments/environment';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -36,7 +26,8 @@ const firebaseConfig = {
     AngularFireAuthModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
