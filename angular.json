@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ghaya-serc-app"
+    }
+  },
+  "defaultProject": "ghaya-serc-app",
+  "cli": {
+    "analytics": "118560e6-57e6-44f7-9ee8-17c96d8ad0a6"
+  }
 }

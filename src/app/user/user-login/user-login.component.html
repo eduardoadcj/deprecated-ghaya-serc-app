@@ -1,0 +1,27 @@
+<div id="body" class="text-center">
+
+    <form class="form-signin was-validated" [formGroup]="form" (ngSubmit)="login()">
+
+        <img class="mb-4" src="../../../assets/imgs/logo.png" alt="" height="100">
+
+        <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
+
+        <label for="inputEmail" class="sr-only">Endereço de email</label>
+        <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Seu email"
+            name="email" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Senha"
+            name="password" required>
+
+        <button class="btn btn-lg btn-primary btn-block btn-secondary" type="submit">
+            <span *ngIf="loading == true" class="spinner-border spinner-border-md" role="status"
+                aria-hidden="true"></span>
+            <span *ngIf="loading != true">Login</span>
+        </button>
+
+        <div class="text-danger mt-2">{{err}}</div>
+
+    </form>
+
+</div>
