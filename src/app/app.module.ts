@@ -14,6 +14,9 @@ import { firebaseConfig } from 'src/environments/environment';
 import { NgxMaskModule } from 'ngx-mask';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MenuComponent } from './admin/menu/menu.component';
+import { IconsModule } from './icons/feather/icons/icons.module';
+import { FeatherModule } from 'angular-feather';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { MenuComponent } from './admin/menu/menu.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    IconsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
