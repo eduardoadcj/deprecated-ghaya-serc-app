@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faSignOutAlt, faTachometerAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  faSignOutAlt = faSignOutAlt;
+  faTachometerAlt = faTachometerAlt;
+  faUserFriends = faUserFriends;
+
+  currentRoute: string = "";
+
+  constructor(private router: Router) {
+    this.getCurrentRoute();
+  }
 
   ngOnInit(): void {
+  }
+
+  getCurrentRoute(): void {
+    this.currentRoute = this.router.url;
+    console.log(this.currentRoute);
   }
 
 }

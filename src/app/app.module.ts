@@ -15,7 +15,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MenuComponent } from './admin/menu/menu.component';
 import { IconsModule } from './icons/feather/icons/icons.module';
-import { FeatherModule } from 'angular-feather';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RelatorioClienteComponent } from './admin/cliente/relatorio-cliente/relatorio-cliente.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FeatherModule } from 'angular-feather';
     UserLoginComponent,
     CadastroClienteComponent,
     DashboardComponent,
-    MenuComponent
+    MenuComponent,
+    RelatorioClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { FeatherModule } from 'angular-feather';
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
-    IconsModule
+    IconsModule,
+    FontAwesomeModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FeatherModule } from 'angular-feather';
-import { LogOut } from 'angular-feather/icons';
+import { LogOut, Home } from 'angular-feather/icons';
 
 const icons = {
-  LogOut
+  LogOut,
+  Home
 }
 
 @NgModule({
