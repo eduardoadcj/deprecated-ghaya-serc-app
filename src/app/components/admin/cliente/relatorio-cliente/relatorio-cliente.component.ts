@@ -11,11 +11,25 @@ export class RelatorioClienteComponent implements OnInit {
   faSearch = faSearch;
   faArrowRight = faArrowRight;
 
-  preenchedor = [1,2,3,4,5,6,7,7]
+  preenchedor = new Array();
 
-  constructor() { }
+  throttle = 300;
+  scrollDistance = 1;
+  scrollUpDistance = 2;
+
+  constructor() { 
+
+    for(let i = 0; i < 100; i++){
+      this.preenchedor.push('');
+    }
+
+  }
 
   ngOnInit(): void {
+  }
+
+  onScrollDown(){
+    console.log('Chego no final do scroll');
   }
 
   //https://www.npmjs.com/package/ngx-infinite-scroll

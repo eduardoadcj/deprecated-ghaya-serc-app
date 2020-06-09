@@ -18,39 +18,37 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <table class="table table-striped table-borderless table-responsive-md table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Whatsapp</th>
-              <th scope="col">CPF</th>
-              <th scope="col">Nº Calçado</th>
-              <th scope="col">Nº Jeans</th>
-              <th scope="col">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let value of preenchedor">
-              <th scope="row">Eduardo Augusto da Cruz Junior</th>
-              <td>(44) 99924-0044</td>
-              <td>105.136.689-50</td>
-              <td>40</td>
-              <td>46</td>
-              <td style="width: 42px">
-                <button class="btn btn-outline-secondary">
-                  <fa-icon [icon]="faArrowRight"></fa-icon>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+      [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
+
+      <table class="table table-striped table-borderless table-responsive-md table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Whatsapp</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Nº Calçado</th>
+            <th scope="col">Nº Jeans</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let value of preenchedor">
+            <th scope="row">Eduardo Augusto da Cruz Junior</th>
+            <td>(44) 99924-0044</td>
+            <td>105.136.689-50</td>
+            <td>40</td>
+            <td>46</td>
+            <td style="width: 42px">
+              <button class="btn btn-outline-secondary">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
-
-
 
   </main>
 

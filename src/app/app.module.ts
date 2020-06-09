@@ -17,6 +17,7 @@ import { MenuComponent } from './components/admin/menu/menu.component';
 import { IconsModule } from './icons/feather/icons/icons.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-cliente/relatorio-cliente.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     IconsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    InfiniteScrollModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
