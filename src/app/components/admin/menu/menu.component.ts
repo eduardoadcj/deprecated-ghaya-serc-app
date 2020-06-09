@@ -24,7 +24,6 @@ export class MenuComponent implements OnInit {
 
   getCurrentRoute(): void {
     this.currentRoute = this.router.url;
-    console.log(this.currentRoute);
   }
 
 }
