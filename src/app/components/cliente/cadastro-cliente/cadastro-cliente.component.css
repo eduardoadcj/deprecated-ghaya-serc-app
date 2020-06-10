@@ -12,3 +12,46 @@
         font-size: 3.5rem;
     }
 }
+
+.btn{
+    background-color: #b86e7d;
+    border: none;
+}
+
+.form-page-bg {
+    background: #FADCDE;
+}
+
+.rounded-component {
+    border-radius: 15px;
+}
+
+.dark-pink {
+    color: #b86e7d;
+}
+
+.dark-pink-border {
+    border: 1px solid #b86e7d;
+}
+
+.formated-input {
+    padding: 20px;
+    border: none;
+    color: #7A6C6D;
+}
+
+.formated-select {
+    height: 40px;
+    border: none;
+    color: #7A6C6D;
+}
+
+.form-control:focus {
+    border-color: #FF0000;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.custom-select:focus {
+    border-color: #FF0000;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}

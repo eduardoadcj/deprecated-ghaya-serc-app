@@ -1,9 +1,13 @@
-<div class="container">
+<div class="container p-4 mt-3 mb-3 form-page-bg shadow-lg rounded">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="../../../assets/imgs/logo.png" alt="" height="140">
+        <img class="d-block mx-auto mb-4" src="../../../assets/imgs/logo.png" alt="" height="120">
         <h2>Cadastro VIP</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group
-            has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <p class="lead">
+            Queremos te conhecer melhor para oferecermos cada vez mais um atendimento exclusivo. Ao responder este questionário você nos ajudará
+            a selecionar os produtos que melhor se encaixam no seu estilo, suprindo suas necessidades para o dia a dia ou qualquer outra ocasião especial.
+            <br>
+            Seja cliente VIP na Ghaya!
+        </p>
     </div>
 
     <div class="row">
@@ -14,7 +18,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="nome">Seu nome completo:</label>
-                        <input type="text" class="form-control" id="nome" placeholder="" value="" required>
+                        <input type="text" class="rounded-component formated-input form-control " id="nome" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             O nome deve ser preenchido!
                         </div>
@@ -23,7 +27,7 @@
 
                 <div class="mb-3">
                     <label for="email">Seu email: <span class="text-muted">(Opcional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="email@exemplo.com">
+                    <input type="email" class="rounded-component formated-input form-control" id="email" placeholder="email@exemplo.com">
                     <div class="invalid-feedback">
                         Informe um email válido.
                     </div>
@@ -31,7 +35,7 @@
 
                 <div class="mb-3">
                     <label for="whatsapp">Seu Whatsapp:</label>
-                    <input mask="(00) 00000-0000" type="text" class="form-control" id="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
+                    <input mask="(00) 00000-0000" type="text" class="form-control rounded-component formated-input" id="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
                     <div class="invalid-feedback">
                         Informe o seu número whatsapp
                     </div>
@@ -39,7 +43,7 @@
 
                 <div class="mb-3">
                     <label for="cpf">Seu CPF:</label>
-                    <input mask="000.000.000-00" type="text" class="form-control" id="cpf" placeholder="XXX.XXX.XXX-XX" required>
+                    <input mask="000.000.000-00" type="text" class="form-control rounded-component formated-input" id="cpf" placeholder="XXX.XXX.XXX-XX" required>
                     <div class="invalid-feedback">
                         Informe o seu CPF
                     </div>
@@ -48,10 +52,17 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="numeroCalcado">Quanto você calça?</label>
-                        <select class="custom-select d-block w-100" id="numeroCalcado" required>
+                        <label for="numeroCalcado">Qual sua numeração de calçado?</label>
+                        <select class="rounded-component formated-select custom-select d-block w-100 " id="numeroCalcado" required>
                             <option value="">Escolher...</option>
+                            <option>33</option>
                             <option>34</option>
+                            <option>35</option>
+                            <option>36</option>
+                            <option>37</option>
+                            <option>38</option>
+                            <option>39</option>
+                            <option>40</option>
                         </select>
                         <div class="invalid-feedback">
                             Selecione um número válido.
@@ -59,9 +70,20 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="numeroJeans">Qual o tamanho do jeans que você usa?</label>
-                        <select class="custom-select d-block w-100" id="numeroJeans" required>
+                        <select class="custom-select d-block w-100 rounded-component formated-select" id="numeroJeans" required>
                             <option value="">Escolher...</option>
+                            <option>34</option>
+                            <option>36</option>
+                            <option>38</option>
                             <option>40</option>
+                            <option>42</option>
+                            <option>44</option>
+                            <option>46</option>
+                            <option>48</option>
+                            <option>50</option>
+                            <option>52</option>
+                            <option>54</option>
+                            <option>56</option>
                         </select>
                         <div class="invalid-feedback">
                             Selecione um número válido.
@@ -71,7 +93,7 @@
 
                 <div class="mb-3">
                     <label for="nascimento">Quando você nasceu? <span class="text-muted">(Opcional)</span></label>
-                    <input mask="00/00/0000" type="text" class="form-control" id="nascimento" placeholder="XX/XX/XXXX">
+                    <input mask="00/00/0000" type="text" class="form-control rounded-component formated-input" id="nascimento" placeholder="XX/XX/XXXX">
                 </div>
 
                 <hr class="mb-4">
@@ -82,12 +104,12 @@
 
                     <div class="col-md-4 mb-3">
                         <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
-                        <input mask="00000-000" type="text" class="form-control" id="cepCasa" placeholder="XXXXX-XXX">
+                        <input mask="00000-000" type="text" class="form-control rounded-component formated-input" id="cepCasa" placeholder="XXXXX-XXX">
                     </div>
 
                     <div class="col-md-2 mb-3">
                         <label for="estadoCasa">Estado: </label>
-                        <select class="custom-select d-block w-100" id="estadoCasa" required>
+                        <select class="custom-select d-block w-100 rounded-component formated-select" id="estadoCasa" required>
                             <option value="">--</option>
                             <option>PR</option>
                         </select>
@@ -97,7 +119,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="cidadeCasa">Cidade:</label>
-                        <select class="custom-select d-block w-100" id="cidadeCasa" required>
+                        <select class="custom-select d-block w-100 rounded-component formated-select" id="cidadeCasa" required>
                             <option value="">--</option>
                             <option>Paranavaí</option>
                         </select>
@@ -111,14 +133,14 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="bairroCasa">Bairro:</label>
-                        <input type="text" class="form-control" id="bairroCasa" required>
+                        <input type="text" class="form-control rounded-component formated-input" id="bairroCasa" required>
                         <div class="invalid-feedback">
                             Informe o seu bairro.
                         </div>
                     </div>
                     <div class="col-md-8 mb-3">
                         <label for="ruaCasa">Rua: </label>
-                        <input type="text" class="form-control" id="ruaCasa" required>
+                        <input type="text" class="form-control rounded-component formated-input" id="ruaCasa" required>
                         <div class="invalid-feedback">
                             Informe a sua rua.
                         </div>
@@ -129,12 +151,12 @@
 
                     <div class="col-md-4 mb-3">
                         <label for="numeroCasa">Número: </label>
-                        <input type="number" class="form-control" id="numeroCasa">
+                        <input type="number" class="form-control rounded-component formated-input" id="numeroCasa">
                     </div>
 
                     <div class="col-md-8 mb-3">
                         <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
-                        <input type="text" class="form-control" id="complementoCasa">
+                        <input type="text" class="form-control rounded-component formated-input" id="complementoCasa">
                     </div>
 
                 </div>
@@ -147,12 +169,12 @@
 
                     <div class="col-md-4 mb-3">
                         <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
-                        <input mask="00000-000" type="text" class="form-control" id="cepTrabalho" placeholder="XXXXX-XXX">
+                        <input mask="00000-000" type="text" class="form-control rounded-component formated-input" id="cepTrabalho" placeholder="XXXXX-XXX">
                     </div>
 
                     <div class="col-md-2 mb-3">
                         <label for="estadoTrabalho">Estado: </label>
-                        <select class="custom-select d-block w-100" id="estadoTrabalho" required>
+                        <select class="custom-select d-block w-100 rounded-component formated-select" id="estadoTrabalho" required>
                             <option value="">--</option>
                             <option>PR</option>
                         </select>
@@ -162,7 +184,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="cidadeTrabalho">Cidade:</label>
-                        <select class="custom-select d-block w-100" id="cidadeTrabalho" required>
+                        <select class="custom-select d-block w-100 rounded-component formated-select" id="cidadeTrabalho" required>
                             <option value="">--</option>
                             <option>Paranavaí</option>
                         </select>
@@ -176,14 +198,14 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="bairroTrabalho">Bairro:</label>
-                        <input type="text" class="form-control" id="bairroTrabalho" required>
+                        <input type="text" class="form-control rounded-component formated-input" id="bairroTrabalho" required>
                         <div class="invalid-feedback">
                             Informe o seu bairro.
                         </div>
                     </div>
                     <div class="col-md-8 mb-3">
                         <label for="ruaTrabalho">Rua: </label>
-                        <input type="text" class="form-control" id="ruaTrabalho" required>
+                        <input type="text" class="form-control rounded-component formated-input" id="ruaTrabalho" required>
                         <div class="invalid-feedback">
                             Informe a sua rua.
                         </div>
@@ -194,47 +216,52 @@
 
                     <div class="col-md-4 mb-3">
                         <label for="numeroTrabalho">Número: </label>
-                        <input type="number" class="form-control" id="numeroTrabalho">
+                        <input type="number" class="form-control rounded-component formated-input" id="numeroTrabalho">
                     </div>
 
                     <div class="col-md-8 mb-3">
                         <label for="complementoTrabalho">Complemento: <span class="text-muted">(Opcional)</span></label>
-                        <input type="text" class="form-control" id="complementoTrabalho">
+                        <input type="text" class="form-control rounded-component formated-input" id="complementoTrabalho">
                     </div>
 
                 </div>
 
                 <hr class="mb-4">
 
-                <button class="btn btn-secondary btn-lg btn-block" type="submit">Prosseguir</button>
+                <button class="rounded-component btn btn-secondary btn-lg btn-block color-pink" type="submit">Enviar</button>
 
             </form>
         </div>
 
         <div class="col-md-4 order-md-2">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Vantagens</span>
+                <span class="dark-pink">Vantagens</span>
             </h4>
-            <ul class="list-group mb-3">
+            <ul class="list-group mb-3 rounded-component dark-pink-border dark-pink">
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Tapão</h6>
-                        <small class="text-muted">Você recebe um super tapão dado exclusivamente por nossa equipe!</small>
+                        <h6 class="my-0">Sorteios exclusivos</h6>
+                        <small class="text-muted">Sendo VIP você concorre a mimos, brindes e vouchers especiais.</small>
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Pancada</h6>
-                        <small class="text-muted">Ganhe pancadas por um bom preço</small>
+                        <h6 class="my-0">Promoções especiais</h6>
+                        <small class="text-muted">Receba promoções de pares selecionados no seu número e manequim.</small>
                     </div>
-                    <span class="text-muted">10% OFF</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Desconto em compra</h6>
-                        <small>Na compra de qualquer produto na loja</small>
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6 class="my-0">Voucher exclusivo</h6>
+                        <small class="text-muted">Desconto na primeira compra acima de R$250,00.</small>
                     </div>
-                    <span class="text-success">-20%</span>
+                    <span>R$50,00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Condicionais</h6>
+                        <small class="text-muted">Receba condicionais na sua casa ou no seu trabalho.</small>
+                    </div>
                 </li>
             </ul>
 
@@ -242,8 +269,13 @@
 
     </div>
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017-2020 Ghaya Exclusive</p>
+    <footer class="mt-3 text-muted text-center text-small">
+        <ul class="list-inline">
+            <li class="list-inline-item"><fa-icon [icon]="faWhatsapp" class="mr-2 ml-2"></fa-icon>(44) 99874-6016</li>
+            <li class="list-inline-item"><fa-icon [icon]="faInstagram" class="mr-2 ml-2"></fa-icon>@ghaya_exclusive</li>
+            <li class="list-inline-item"><fa-icon [icon]="faFacebook" class="mr-2 ml-2"></fa-icon>Ghaya Exclusive</li>
+        </ul>
+        <p class="mb-1">&copy; Ghaya Exclusive</p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacidade</a></li>
             <li class="list-inline-item"><a href="#">Suporte</a></li>
