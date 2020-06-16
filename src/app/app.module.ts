@@ -19,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-cliente/relatorio-cliente.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewClienteComponent } from './components/admin/cliente/view-cliente/view-cliente.component';
+import { EditClienteComponent } from './components/admin/cliente/edit-cliente/edit-cliente.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ViewClienteComponent } from './components/admin/cliente/view-cliente/vi
     DashboardComponent,
     MenuComponent,
     RelatorioClienteComponent,
-    ViewClienteComponent
+    ViewClienteComponent,
+    EditClienteComponent
   ],
   imports: [
     BrowserModule,

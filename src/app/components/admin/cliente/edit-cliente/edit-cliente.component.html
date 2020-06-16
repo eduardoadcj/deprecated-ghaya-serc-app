@@ -1,0 +1,241 @@
+<main class="container shadow-lg p-3 mb-4 mt-4 bg-white rounded">
+
+    <div class="row mt-2">
+        <div class="col">
+            <h2>
+                <a href="">
+                    <fa-icon [icon]="faArrowLeft" class="ml-2 mr-4"></fa-icon>
+                </a>
+                Alterando cliente
+            </h2>
+        </div>
+    </div>
+
+    <form class="needs-validation m-2">
+        <div class="row mt-3">
+            <div class="col mb-3">
+                <label for="nome">Nome:</label>
+                <input type="text" class="  form-control" id="nome" placeholder=""
+                    value="" required>
+                <div class="invalid-feedback">
+                    O nome deve ser preenchido!
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Email: <span class="text-muted">(Opcional)</span></label>
+            <input type="email" class="  form-control" id="email"
+                placeholder="email@exemplo.com">
+            <div class="invalid-feedback">
+                Informe um email válido.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="whatsapp">Whatsapp:</label>
+            <input mask="(00) 00000-0000" type="text" class="form-control"
+                id="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
+            <div class="invalid-feedback">
+                Informe o seu número whatsapp
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="cpf">CPF:</label>
+            <input mask="000.000.000-00" type="text" class="form-control" id="cpf"
+                placeholder="XXX.XXX.XXX-XX" required>
+            <div class="invalid-feedback">
+                Informe o seu CPF
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="numeroCalcado">Nº Calçado:</label>
+                <select class="  custom-select d-block w-100" id="numeroCalcado"
+                    required>
+                    <option value="">Escolher...</option>
+                    <option>33</option>
+                    <option>34</option>
+                    <option>35</option>
+                    <option>36</option>
+                    <option>37</option>
+                    <option>38</option>
+                    <option>39</option>
+                    <option>40</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione um número válido.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="numeroJeans">Nº Jeans:</label>
+                <select class="custom-select d-block w-100" id="numeroJeans" required>
+                    <option value="">Escolher...</option>
+                    <option>34</option>
+                    <option>36</option>
+                    <option>38</option>
+                    <option>40</option>
+                    <option>42</option>
+                    <option>44</option>
+                    <option>46</option>
+                    <option>48</option>
+                    <option>50</option>
+                    <option>52</option>
+                    <option>54</option>
+                    <option>56</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione um número válido.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="nascimento">Data de nascimento:</label>
+            <input mask="00/00/0000" type="text" class="form-control" id="nascimento"
+                placeholder="XX/XX/XXXX">
+        </div>
+
+        <hr class="mb-4">
+
+        <h5 class="mb-3">Endereço da casa</h5>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
+                <input mask="00000-000" type="text" class="form-control" id="cepCasa"
+                    placeholder="XXXXX-XXX">
+            </div>
+
+            <div class="col-md-2 mb-3">
+                <label for="estadoCasa">Estado: </label>
+                <select class="custom-select d-block w-100" id="estadoCasa" required>
+                    <option value="">--</option>
+                    <option>PR</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione um estado válido.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cidadeCasa">Cidade:</label>
+                <select class="custom-select d-block w-100" id="cidadeCasa" required>
+                    <option value="">--</option>
+                    <option>Paranavaí</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione um número válido.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="bairroCasa">Bairro:</label>
+                <input type="text" class="form-control" id="bairroCasa" required>
+                <div class="invalid-feedback">
+                    Informe o seu bairro.
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <label for="ruaCasa">Rua: </label>
+                <input type="text" class="form-control" id="ruaCasa" required>
+                <div class="invalid-feedback">
+                    Informe a sua rua.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <label for="numeroCasa">Número: </label>
+                <input type="number" class="form-control" id="numeroCasa">
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
+                <input type="text" class="form-control" id="complementoCasa">
+            </div>
+
+        </div>
+
+        <hr class="mb-4">
+
+        <h5 class="mb-3">Endereço do trabalho <span class="text-muted">(Opcional)</span></h5>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
+                <input mask="00000-000" type="text" class="form-control"
+                    id="cepTrabalho" placeholder="XXXXX-XXX">
+            </div>
+
+            <div class="col-md-2 mb-3">
+                <label for="estadoTrabalho">Estado: </label>
+                <select class="custom-select d-block w-100" id="estadoTrabalho"
+                    required>
+                    <option value="">--</option>
+                    <option>PR</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione um estado válido.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cidadeTrabalho">Cidade:</label>
+                <select class="custom-select d-block w-100" id="cidadeTrabalho"
+                    required>
+                    <option value="">--</option>
+                    <option>Paranavaí</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione um número válido.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="bairroTrabalho">Bairro:</label>
+                <input type="text" class="form-control" id="bairroTrabalho" required>
+                <div class="invalid-feedback">
+                    Informe o seu bairro.
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <label for="ruaTrabalho">Rua: </label>
+                <input type="text" class="form-control" id="ruaTrabalho" required>
+                <div class="invalid-feedback">
+                    Informe a sua rua.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <label for="numeroTrabalho">Número: </label>
+                <input type="number" class="form-control" id="numeroTrabalho">
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <label for="complementoTrabalho">Complemento: <span class="text-muted">(Opcional)</span></label>
+                <input type="text" class="form-control" id="complementoTrabalho">
+            </div>
+
+        </div>
+
+        <hr class="mb-4">
+
+        <button class=" btn btn-secondary btn-lg btn-block color-pink" type="submit">Alterar</button>
+
+    </form>
+
+</main>

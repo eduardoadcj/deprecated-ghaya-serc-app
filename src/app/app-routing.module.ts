@@ -4,14 +4,14 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
 import { CadastroClienteComponent } from './components/cliente/cadastro-cliente/cadastro-cliente.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-cliente/relatorio-cliente.component';
-import { ViewClienteComponent } from './components/admin/cliente/view-cliente/view-cliente.component';
+import { EditClienteComponent } from './components/admin/cliente/edit-cliente/edit-cliente.component';
 
 const routes: Routes = [
   {path: '', component: CadastroClienteComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'clientes', component: RelatorioClienteComponent},
-  {path: 'cliente-view', component: ViewClienteComponent}
+  {path: 'cliente-edit', component: EditClienteComponent}
 ];
 
 @NgModule({
