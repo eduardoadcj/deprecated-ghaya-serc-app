@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-relatorio-cliente',
@@ -9,7 +10,7 @@ import { faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 export class RelatorioClienteComponent implements OnInit {
 
   faSearch = faSearch;
-  faArrowRight = faArrowRight;
+  faEye = faEye;
 
   preenchedor = new Array();
 
