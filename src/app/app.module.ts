@@ -18,6 +18,7 @@ import { IconsModule } from './icons/feather/icons/icons.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-cliente/relatorio-cliente.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ViewClienteComponent } from './components/admin/cliente/view-cliente/view-cliente.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CadastroClienteComponent,
     DashboardComponent,
     MenuComponent,
-    RelatorioClienteComponent
+    RelatorioClienteComponent,
+    ViewClienteComponent
   ],
   imports: [
     BrowserModule,

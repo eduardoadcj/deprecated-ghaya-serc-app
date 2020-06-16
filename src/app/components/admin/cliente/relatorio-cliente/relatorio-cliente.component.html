@@ -6,16 +6,21 @@
       class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Clientes</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
-        
+
         <div class="input-group mr-2">
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Nº Calçado</label>
           </div>
           <select class="custom-select" id="inputGroupSelect01">
             <option selected>Todos</option>
-            <option value="1">34</option>
-            <option value="2">35</option>
-            <option value="3">36</option>
+            <option>33</option>
+            <option>34</option>
+            <option>35</option>
+            <option>36</option>
+            <option>37</option>
+            <option>38</option>
+            <option>39</option>
+            <option>40</option>
           </select>
         </div>
 
@@ -25,9 +30,18 @@
           </div>
           <select class="custom-select" id="inputGroupSelect01">
             <option selected>Todos</option>
-            <option value="1">34</option>
-            <option value="2">35</option>
-            <option value="3">36</option>
+            <option>34</option>
+            <option>36</option>
+            <option>38</option>
+            <option>40</option>
+            <option>42</option>
+            <option>44</option>
+            <option>46</option>
+            <option>48</option>
+            <option>50</option>
+            <option>52</option>
+            <option>54</option>
+            <option>56</option>
           </select>
         </div>
 
@@ -66,7 +80,7 @@
             <td>40</td>
             <td>46</td>
             <td style="width: 42px">
-              <button class="btn btn-outline-secondary">
+              <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#viewModal">
                 <fa-icon [icon]="faArrowRight"></fa-icon>
               </button>
             </td>
@@ -79,3 +93,5 @@
   </main>
 
 </app-menu>
+
+<app-view-cliente></app-view-cliente>
