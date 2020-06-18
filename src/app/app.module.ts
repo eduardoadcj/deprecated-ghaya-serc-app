@@ -20,6 +20,8 @@ import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ViewClienteComponent } from './components/admin/cliente/view-cliente/view-cliente.component';
 import { EditClienteComponent } from './components/admin/cliente/edit-cliente/edit-cliente.component';
+import { SecurityService } from './core/security/security.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -44,9 +46,10 @@ import { EditClienteComponent } from './components/admin/cliente/edit-cliente/ed
     NgxMaskModule.forRoot(),
     IconsModule,
     FontAwesomeModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, SecurityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
