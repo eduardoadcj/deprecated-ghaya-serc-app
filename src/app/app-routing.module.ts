@@ -5,13 +5,15 @@ import { CadastroClienteComponent } from './components/cliente/cadastro-cliente/
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { RelatorioClienteComponent } from './components/admin/cliente/relatorio-cliente/relatorio-cliente.component';
 import { EditClienteComponent } from './components/admin/cliente/edit-cliente/edit-cliente.component';
+import { Error404Component } from './components/error404/error404.component';
 
 const routes: Routes = [
   {path: '', component: CadastroClienteComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'clientes', component: RelatorioClienteComponent},
-  {path: 'cliente-edit', component: EditClienteComponent}
+  {path: 'cliente-edit', component: EditClienteComponent},
+  {path: '**', component: Error404Component}
 ];
 
 @NgModule({

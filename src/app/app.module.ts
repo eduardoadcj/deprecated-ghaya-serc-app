@@ -22,6 +22,7 @@ import { ViewClienteComponent } from './components/admin/cliente/view-cliente/vi
 import { EditClienteComponent } from './components/admin/cliente/edit-cliente/edit-cliente.component';
 import { SecurityService } from './core/security/security.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Error404Component } from './components/error404/error404.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     MenuComponent,
     RelatorioClienteComponent,
     ViewClienteComponent,
-    EditClienteComponent
+    EditClienteComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
