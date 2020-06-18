@@ -3,8 +3,10 @@
         <img class="d-block mx-auto mb-4" src="../../../assets/imgs/logo.png" alt="" height="120">
         <h2>Cadastro VIP</h2>
         <p class="lead">
-            Queremos te conhecer melhor para oferecermos cada vez mais um atendimento exclusivo. Ao responder este questionário você nos ajudará
-            a selecionar os produtos que melhor se encaixam no seu estilo, suprindo suas necessidades para o dia a dia ou qualquer outra ocasião especial.
+            Queremos te conhecer melhor para oferecermos cada vez mais um atendimento exclusivo. Ao responder este
+            questionário você nos ajudará
+            a selecionar os produtos que melhor se encaixam no seu estilo, suprindo suas necessidades para o dia a dia
+            ou qualquer outra ocasião especial.
             <br>
             Seja cliente VIP na Ghaya!
         </p>
@@ -14,20 +16,23 @@
 
         <div class="col-md-8 order-md-1 mb-4">
             <h4 class="mb-3">Informações sobre você</h4>
-            <form class="needs-validation">
+
+            <form class="needs-validation" [formGroup]="form" (ngSubmit)="save()" novalidate>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="nome">Seu nome completo:</label>
-                        <input type="text" class="rounded-component formated-input form-control " id="nome" placeholder="" value="" required>
+                        <input formControlName="nome" type="text" class="rounded-component formated-input form-control "
+                            id="nome" placeholder="" value="" required autofocus [ngClass]="displayFieldCss('nome')">
                         <div class="invalid-feedback">
-                            O nome deve ser preenchido!
+                            Informe seu nome.
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="email">Seu email: <span class="text-muted">(Opcional)</span></label>
-                    <input type="email" class="rounded-component formated-input form-control" id="email" placeholder="email@exemplo.com">
+                    <input formControlName="nome" type="email" class="rounded-component formated-input form-control"
+                        id="email" placeholder="email@exemplo.com" [ngClass]="displayFieldCss('email')">
                     <div class="invalid-feedback">
                         Informe um email válido.
                     </div>
@@ -35,25 +40,32 @@
 
                 <div class="mb-3">
                     <label for="whatsapp">Seu Whatsapp:</label>
-                    <input mask="(00) 00000-0000" type="text" class="form-control rounded-component formated-input" id="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
+                    <input formControlName="whatsapp" mask="(00) 00000-0000" type="text"
+                        class="form-control rounded-component formated-input" id="whatsapp"
+                        placeholder="(XX) XXXXX-XXXX" required [ngClass]="displayFieldCss('whatsapp')">
                     <div class="invalid-feedback">
-                        Informe o seu número whatsapp
+                        Informe um Whatsapp válido.
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="cpf">Seu CPF:</label>
-                    <input mask="000.000.000-00" type="text" class="form-control rounded-component formated-input" id="cpf" placeholder="XXX.XXX.XXX-XX" required>
+                    <input formControlName="cpf" mask="000.000.000-00" type="text"
+                        class="form-control rounded-component formated-input" id="cpf" placeholder="XXX.XXX.XXX-XX"
+                        required [ngClass]="displayFieldCss('cpf')">
                     <div class="invalid-feedback">
-                        Informe o seu CPF
+                        Informe um CPF válido.
                     </div>
-                    <small id="cpfHelp" class="form-text text-muted">Não se preocupe, guardaremos esta informação com carinho.</small>
+                    <small id="cpfHelp" class="form-text text-muted">Não se preocupe, guardaremos esta informação com
+                        carinho.</small>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="numeroCalcado">Qual sua numeração de calçado?</label>
-                        <select class="rounded-component formated-select custom-select d-block w-100 " id="numeroCalcado" required>
+                        <select formControlName="nCalcado"
+                            class="rounded-component formated-select custom-select d-block w-100 " id="numeroCalcado"
+                            required [ngClass]="displayFieldCss('nCalcado')">
                             <option value="">Escolher...</option>
                             <option>33</option>
                             <option>34</option>
@@ -64,13 +76,12 @@
                             <option>39</option>
                             <option>40</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Selecione um número válido.
-                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="numeroJeans">Qual o tamanho do jeans que você usa?</label>
-                        <select class="custom-select d-block w-100 rounded-component formated-select" id="numeroJeans" required>
+                        <select formControlName="nJeans"
+                            class="custom-select d-block w-100 rounded-component formated-select" id="numeroJeans"
+                            required [ngClass]="displayFieldCss('nJeans')">
                             <option value="">Escolher...</option>
                             <option>34</option>
                             <option>36</option>
@@ -85,78 +96,98 @@
                             <option>54</option>
                             <option>56</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Selecione um número válido.
-                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="nascimento">Quando você nasceu?</label>
-                    <input mask="00/00/0000" type="text" class="form-control rounded-component formated-input" id="nascimento" placeholder="XX/XX/XXXX">
+                    <input formControlName="dataNascimento" mask="00/00/0000" type="text"
+                        class="form-control rounded-component formated-input" id="nascimento" placeholder="XX/XX/XXXX"
+                        required [ngClass]="displayFieldCss('dataNascimento')">
+                    <div class="invalid-feedback">
+                        Informe uma data válido.
+                    </div>
                 </div>
 
                 <hr class="mb-4">
-                
+
                 <h5 class="mb-3">Endereço da sua casa</h5>
 
-                <div class="row">
+                <div formGroupName="enderecoCasa">
 
-                    <div class="col-md-4 mb-3">
-                        <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
-                        <input mask="00000-000" type="text" class="form-control rounded-component formated-input" id="cepCasa" placeholder="XXXXX-XXX">
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
+                            <input formControlName="cep" mask="00000-000" type="text"
+                                class="form-control rounded-component formated-input" id="cepCasa"
+                                placeholder="XXXXX-XXX" [ngClass]="displayFieldCss('enderecoCasa.cep')">
+                            <div class="invalid-feedback">
+                                Informe um CEP válido.
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <label for="estadoCasa">Estado: </label>
+                            <select formControlName="estado"
+                                class="custom-select d-block w-100 rounded-component formated-select" id="estadoCasa"
+                                required [ngClass]="displayFieldCss('enderecoCasa.estado')">
+                                <option value="">--</option>
+                                <option>PR</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cidadeCasa">Cidade:</label>
+                            <select formControlName="cidade"
+                                class="custom-select d-block w-100 rounded-component formated-select" id="cidadeCasa"
+                                required [ngClass]="displayFieldCss('enderecoCasa.cidade')">
+                                <option value="">--</option>
+                                <option>Paranavaí</option>
+                            </select>
+                        </div>
+
                     </div>
 
-                    <div class="col-md-2 mb-3">
-                        <label for="estadoCasa">Estado: </label>
-                        <select class="custom-select d-block w-100 rounded-component formated-select" id="estadoCasa" required>
-                            <option value="">--</option>
-                            <option>PR</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Selecione um estado válido.
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="bairroCasa">Bairro:</label>
+                            <input formControlName="bairro" type="text"
+                                class="form-control rounded-component formated-input" id="bairroCasa" required
+                                [ngClass]="displayFieldCss('enderecoCasa.bairro')">
+                            <div class="invalid-feedback">
+                                Informe seu bairro.
+                            </div>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="ruaCasa">Rua: </label>
+                            <input formControlName="rua" type="text"
+                                class="form-control rounded-component formated-input" id="ruaCasa" required
+                                [ngClass]="displayFieldCss('enderecoCasa.rua')">
+                            <div class="invalid-feedback">
+                                Informe sua rua.
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="cidadeCasa">Cidade:</label>
-                        <select class="custom-select d-block w-100 rounded-component formated-select" id="cidadeCasa" required>
-                            <option value="">--</option>
-                            <option>Paranavaí</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Selecione um número válido.
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="numeroCasa">Número: </label>
+                            <input formControlName="numero" type="number"
+                                class="form-control rounded-component formated-input" id="numeroCasa" required
+                                [ngClass]="displayFieldCss('enderecoCasa.numero')">
+                            <div class="invalid-feedback">
+                                Informe seu número.
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="bairroCasa">Bairro:</label>
-                        <input type="text" class="form-control rounded-component formated-input" id="bairroCasa" required>
-                        <div class="invalid-feedback">
-                            Informe o seu bairro.
+                        <div class="col-md-8 mb-3">
+                            <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
+                            <input formControlName="complemento" type="text"
+                                class="form-control rounded-component formated-input" id="complementoCasa"
+                                [ngClass]="displayFieldCss('enderecoCasa.numero')">
                         </div>
-                    </div>
-                    <div class="col-md-8 mb-3">
-                        <label for="ruaCasa">Rua: </label>
-                        <input type="text" class="form-control rounded-component formated-input" id="ruaCasa" required>
-                        <div class="invalid-feedback">
-                            Informe a sua rua.
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-
-                    <div class="col-md-4 mb-3">
-                        <label for="numeroCasa">Número: </label>
-                        <input type="number" class="form-control rounded-component formated-input" id="numeroCasa">
-                    </div>
-
-                    <div class="col-md-8 mb-3">
-                        <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
-                        <input type="text" class="form-control rounded-component formated-input" id="complementoCasa">
                     </div>
 
                 </div>
@@ -165,70 +196,82 @@
 
                 <h5 class="mb-3">Endereço do seu trabalho <span class="text-muted">(Opcional)</span></h5>
 
-                <div class="row">
+                <div formGroupName="enderecoTrabalho">
 
-                    <div class="col-md-4 mb-3">
-                        <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
-                        <input mask="00000-000" type="text" class="form-control rounded-component formated-input" id="cepTrabalho" placeholder="XXXXX-XXX">
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
+                            <input formControlName="cep" mask="00000-000" type="text"
+                                class="form-control rounded-component formated-input" id="cepTrabalho"
+                                placeholder="XXXXX-XXX" [ngClass]="displayFieldCss('enderecoTrabalho.cep')">
+                            <div class="invalid-feedback">
+                                Informe um CEP válido.
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <label for="estadoTrabalho">Estado: </label>
+                            <select formControlName="estado"
+                                class="custom-select d-block w-100 rounded-component formated-select"
+                                id="estadoTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.estado')">
+                                <option value="">--</option>
+                                <option>PR</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="cidadeTrabalho">Cidade:</label>
+                            <select formControlName="cidade"
+                                class="custom-select d-block w-100 rounded-component formated-select"
+                                id="cidadeTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.cidade')">
+                                <option value="">--</option>
+                                <option>Paranavaí</option>
+                            </select>
+                        </div>
+
                     </div>
 
-                    <div class="col-md-2 mb-3">
-                        <label for="estadoTrabalho">Estado: </label>
-                        <select class="custom-select d-block w-100 rounded-component formated-select" id="estadoTrabalho" required>
-                            <option value="">--</option>
-                            <option>PR</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Selecione um estado válido.
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="bairroTrabalho">Bairro:</label>
+                            <input formControlName="bairro" type="text"
+                                class="form-control rounded-component formated-input" id="bairroTrabalho"
+                                [ngClass]="displayFieldCss('enderecoTrabalho.bairro')">
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="ruaTrabalho">Rua: </label>
+                            <input formControlName="rua" type="text"
+                                class="form-control rounded-component formated-input" id="ruaTrabalho"
+                                [ngClass]="displayFieldCss('enderecoTrabalho.rua')">
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="cidadeTrabalho">Cidade:</label>
-                        <select class="custom-select d-block w-100 rounded-component formated-select" id="cidadeTrabalho" required>
-                            <option value="">--</option>
-                            <option>Paranavaí</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Selecione um número válido.
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="numeroTrabalho">Número: </label>
+                            <input formControlName="numero" type="number"
+                                class="form-control rounded-component formated-input" id="numeroTrabalho"
+                                [ngClass]="displayFieldCss('enderecoTrabalho.numero')">
                         </div>
-                    </div>
 
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label for="bairroTrabalho">Bairro:</label>
-                        <input type="text" class="form-control rounded-component formated-input" id="bairroTrabalho" required>
-                        <div class="invalid-feedback">
-                            Informe o seu bairro.
+                        <div class="col-md-8 mb-3">
+                            <label for="complementoTrabalho">Complemento: <span
+                                    class="text-muted">(Opcional)</span></label>
+                            <input formControlName="complemento" type="text"
+                                class="form-control rounded-component formated-input" id="complementoTrabalho"
+                                [ngClass]="displayFieldCss('enderecoTrabalho.complemento')">
                         </div>
-                    </div>
-                    <div class="col-md-8 mb-3">
-                        <label for="ruaTrabalho">Rua: </label>
-                        <input type="text" class="form-control rounded-component formated-input" id="ruaTrabalho" required>
-                        <div class="invalid-feedback">
-                            Informe a sua rua.
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-
-                    <div class="col-md-4 mb-3">
-                        <label for="numeroTrabalho">Número: </label>
-                        <input type="number" class="form-control rounded-component formated-input" id="numeroTrabalho">
-                    </div>
-
-                    <div class="col-md-8 mb-3">
-                        <label for="complementoTrabalho">Complemento: <span class="text-muted">(Opcional)</span></label>
-                        <input type="text" class="form-control rounded-component formated-input" id="complementoTrabalho">
                     </div>
 
                 </div>
 
                 <hr class="mb-4">
 
-                <button class="rounded-component btn btn-secondary btn-lg btn-block color-pink" type="submit">Enviar</button>
+                <button class="rounded-component btn btn-secondary btn-lg btn-block color-pink"
+                    type="submit">Enviar</button>
 
             </form>
         </div>
@@ -247,7 +290,8 @@
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                         <h6 class="my-0">Promoções especiais</h6>
-                        <small class="text-muted">Receba promoções de pares selecionados no seu número e manequim.</small>
+                        <small class="text-muted">Receba promoções de pares selecionados no seu número e
+                            manequim.</small>
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
@@ -271,9 +315,15 @@
 
     <footer class="mt-3 text-muted text-center text-small">
         <ul class="list-inline">
-            <li class="list-inline-item"><fa-icon [icon]="faWhatsapp" class="mr-2 ml-2"></fa-icon>(44) 99874-6016</li>
-            <li class="list-inline-item"><fa-icon [icon]="faInstagram" class="mr-2 ml-2"></fa-icon>@ghaya_exclusive</li>
-            <li class="list-inline-item"><fa-icon [icon]="faFacebook" class="mr-2 ml-2"></fa-icon>Ghaya Exclusive</li>
+            <li class="list-inline-item">
+                <fa-icon [icon]="faWhatsapp" class="mr-2 ml-2"></fa-icon>(44) 99874-6016
+            </li>
+            <li class="list-inline-item">
+                <fa-icon [icon]="faInstagram" class="mr-2 ml-2"></fa-icon>@ghaya_exclusive
+            </li>
+            <li class="list-inline-item">
+                <fa-icon [icon]="faFacebook" class="mr-2 ml-2"></fa-icon>Ghaya Exclusive
+            </li>
         </ul>
         <p class="mb-1">&copy; Ghaya Exclusive</p>
         <ul class="list-inline">
