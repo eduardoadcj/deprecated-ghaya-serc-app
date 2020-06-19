@@ -131,9 +131,10 @@
                             <label for="estadoCasa">Estado: </label>
                             <select formControlName="estado"
                                 class="custom-select d-block w-100 rounded-component formated-select" id="estadoCasa"
-                                required [ngClass]="displayFieldCss('enderecoCasa.estado')">
+                                required [ngClass]="displayFieldCss('enderecoCasa.estado')"
+                                (change)="updateCidades('casa')">
                                 <option value="">--</option>
-                                <option>PR</option>
+                                <option *ngFor="let estado of estados | async">{{estado.uf}}</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -142,7 +143,7 @@
                                 class="custom-select d-block w-100 rounded-component formated-select" id="cidadeCasa"
                                 required [ngClass]="displayFieldCss('enderecoCasa.cidade')">
                                 <option value="">--</option>
-                                <option>Paranavaí</option>
+                                <option *ngFor="let cidade of cidadesCasa | async">{{cidade.nome}}</option>
                             </select>
                         </div>
 
@@ -214,9 +215,10 @@
                             <label for="estadoTrabalho">Estado: </label>
                             <select formControlName="estado"
                                 class="custom-select d-block w-100 rounded-component formated-select"
-                                id="estadoTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.estado')">
+                                id="estadoTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.estado')"
+                                (change)="updateCidades('trabalho')">
                                 <option value="">--</option>
-                                <option>PR</option>
+                                <option *ngFor="let estado of estados | async">{{estado.uf}}</option>
                             </select>
                         </div>
 
@@ -226,7 +228,7 @@
                                 class="custom-select d-block w-100 rounded-component formated-select"
                                 id="cidadeTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.cidade')">
                                 <option value="">--</option>
-                                <option>Paranavaí</option>
+                                <option *ngFor="let cidade of cidadesTrabalho | async">{{cidade.nome}}</option>
                             </select>
                         </div>
 

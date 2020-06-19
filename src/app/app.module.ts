@@ -24,6 +24,7 @@ import { SecurityService } from './core/security/security.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Error404Component } from './components/error404/error404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { CidadeEstadoService } from './services/cidade-estado/cidade-estado.service';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
     InfiniteScrollModule,
     HttpClientModule
   ],
-  providers: [AuthService, SecurityService],
+  providers: [AuthService, SecurityService, CidadeEstadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

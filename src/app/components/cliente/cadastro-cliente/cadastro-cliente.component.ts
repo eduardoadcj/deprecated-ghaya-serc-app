@@ -3,6 +3,10 @@ import { faInstagram, faWhatsapp, faFacebook } from '@fortawesome/free-brands-sv
 import { SecurityService } from 'src/app/core/security/security.service';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { CidadeEstadoService } from 'src/app/services/cidade-estado/cidade-estado.service';
+import { Estado } from 'src/app/services/cidade-estado/model/estado';
+import { Observable } from 'rxjs';
+import { Cidade } from 'src/app/services/cidade-estado/model/cidade';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -17,11 +21,20 @@ export class CadastroClienteComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private security: SecurityService, private router: Router, private formBuilder: FormBuilder) { }
+  estados: Observable<Estado[]>;
+  cidadesCasa: Observable<Cidade[]>;
+  cidadesTrabalho: Observable<Cidade[]>;
+
+  constructor(private security: SecurityService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private cidadeEstadoService: CidadeEstadoService) { }
 
   ngOnInit(): void {
 
     this.checkApiConnection();
+
+    this.estados = this.cidadeEstadoService.getEstados();
 
     this.form = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
@@ -50,6 +63,7 @@ export class CadastroClienteComponent implements OnInit {
         complemento: new FormControl(''),
       })
     });
+
   }
 
   checkApiConnection(): void {
@@ -62,6 +76,25 @@ export class CadastroClienteComponent implements OnInit {
         }
         console.log(this.security.getToken());
       });
+    }
+  }
+
+  updateCidades(which: string){
+    if(which === 'casa'){
+      let uf: string = this.form.get('enderecoCasa.estado').value;
+      if(!uf){
+        this.cidadesCasa = null;
+        return;
+      }
+      this.cidadesCasa = this.cidadeEstadoService.getCidadesByUf(uf);
+    }else if(which === 'trabalho'){
+      
+      let uf: string = this.form.get('enderecoTrabalho.estado').value;
+      if(!uf){
+        this.cidadesTrabalho = null;
+        return;
+      }
+      this.cidadesTrabalho = this.cidadeEstadoService.getCidadesByUf(uf);
     }
   }
 
