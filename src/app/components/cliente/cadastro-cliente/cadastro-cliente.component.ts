@@ -66,6 +66,7 @@ export class CadastroClienteComponent implements OnInit {
 
   }
 
+  //remover este metodo
   checkApiConnection(): void {
     if (!this.security.getToken()) {
       this.security.login(err => {
