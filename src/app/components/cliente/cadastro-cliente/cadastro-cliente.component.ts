@@ -50,7 +50,6 @@ export class CadastroClienteComponent implements OnInit {
         complemento: new FormControl(''),
       })
     });
-
   }
 
   checkApiConnection(): void {
