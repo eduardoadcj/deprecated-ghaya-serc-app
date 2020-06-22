@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Error404Component } from './components/error404/error404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { CidadeEstadoService } from './services/cidade-estado/cidade-estado.service';
+import { ViaCepService } from './services/via-cep/via-cep.service';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { CidadeEstadoService } from './services/cidade-estado/cidade-estado.serv
     InfiniteScrollModule,
     HttpClientModule
   ],
-  providers: [AuthService, SecurityService, CidadeEstadoService],
+  providers: [AuthService, SecurityService, CidadeEstadoService, ViaCepService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

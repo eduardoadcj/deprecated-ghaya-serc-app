@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { faInstagram, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { SecurityService } from 'src/app/core/security/security.service';
 import { Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { CidadeEstadoService } from 'src/app/services/cidade-estado/cidade-estad
 import { Estado } from 'src/app/services/cidade-estado/model/estado';
 import { Observable } from 'rxjs';
 import { Cidade } from 'src/app/services/cidade-estado/model/cidade';
+import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
+import { ViaEndereco } from 'src/app/services/via-cep/model/via-endereco';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -21,6 +23,9 @@ export class CadastroClienteComponent implements OnInit {
 
   form: FormGroup;
 
+  onLoadedCidadeCasa = () => { };
+  onLoadedCidadeTrabalho = () => { };
+
   estados: Observable<Estado[]>;
   cidadesCasa: Observable<Cidade[]>;
   cidadesTrabalho: Observable<Cidade[]>;
@@ -28,7 +33,8 @@ export class CadastroClienteComponent implements OnInit {
   constructor(private security: SecurityService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private cidadeEstadoService: CidadeEstadoService) { }
+    private cidadeEstadoService: CidadeEstadoService,
+    private viaCepService: ViaCepService) { }
 
   ngOnInit(): void {
 
@@ -80,23 +86,83 @@ export class CadastroClienteComponent implements OnInit {
     }
   }
 
-  updateCidades(which: string){
-    if(which === 'casa'){
+  updateCidades(which: string) {
+    if (which === 'casa') {
       let uf: string = this.form.get('enderecoCasa.estado').value;
-      if(!uf){
+      if (!uf) {
         this.cidadesCasa = null;
         return;
       }
       this.cidadesCasa = this.cidadeEstadoService.getCidadesByUf(uf);
-    }else if(which === 'trabalho'){
-      
+    } else if (which === 'trabalho') {
       let uf: string = this.form.get('enderecoTrabalho.estado').value;
-      if(!uf){
+      if (!uf) {
         this.cidadesTrabalho = null;
         return;
       }
       this.cidadesTrabalho = this.cidadeEstadoService.getCidadesByUf(uf);
     }
+  }
+
+  searchCepCasa(cep: string): void {
+
+    if (cep.length != 9) {
+      return;
+    }
+
+    cep.replace('-', '');
+    this.viaCepService.getEnderecoByCep(cep).subscribe((endereco: ViaEndereco) => {
+
+      if (endereco.erro) {
+        this.form.get('enderecoCasa.cep').setErrors({'error': true})
+        return;
+      }
+
+      this.form.get('enderecoCasa.estado').setValue(endereco.uf);
+      this.updateCidades('casa');
+
+      this.onLoadedCidadeCasa = () => {
+        this.form.get('enderecoCasa.cidade').setValue(endereco.localidade);
+        this.onLoadedCidadeCasa = () => { };
+      }
+
+      this.form.get('enderecoCasa.bairro').setValue(endereco.bairro);
+      this.form.get('enderecoCasa.rua').setValue(endereco.logradouro);
+      this.form.get('enderecoCasa.complemento').setValue(endereco.complemento);
+
+    });
+
+  }
+
+  searchCepTrabalho(cep: string): void {
+
+    if (cep.length != 9) {
+      return;
+    }
+
+    cep.replace('-', '');
+
+    this.viaCepService.getEnderecoByCep(cep).subscribe((endereco: ViaEndereco) => {
+
+      if (endereco.erro) {
+        this.form.get('enderecoTrabalho.cep').setErrors({'error': true})
+        return;
+      }
+
+      this.form.get('enderecoTrabalho.estado').setValue(endereco.uf);
+      this.updateCidades('trabalho');
+
+      this.onLoadedCidadeTrabalho = () => {
+        this.form.get('enderecoTrabalho.cidade').setValue(endereco.localidade);
+        this.onLoadedCidadeTrabalho = () => { };
+      }
+
+      this.form.get('enderecoTrabalho.bairro').setValue(endereco.bairro);
+      this.form.get('enderecoTrabalho.rua').setValue(endereco.logradouro);
+      this.form.get('enderecoTrabalho.complemento').setValue(endereco.complemento);
+
+    });
+
   }
 
   save(): void {
