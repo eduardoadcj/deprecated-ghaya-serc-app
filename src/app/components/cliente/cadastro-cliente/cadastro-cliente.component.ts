@@ -26,6 +26,8 @@ export class CadastroClienteComponent implements OnInit {
   onLoadedCidadeCasa = () => { };
   onLoadedCidadeTrabalho = () => { };
 
+  sendLoading: boolean = false;
+
   estados: Observable<Estado[]>;
   cidadesCasa: Observable<Cidade[]>;
   cidadesTrabalho: Observable<Cidade[]>;
@@ -45,7 +47,7 @@ export class CadastroClienteComponent implements OnInit {
     this.form = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.email]),
-      whatsapp: new FormControl('', [Validators.required, Validators.minLength(15)]),
+      whatsapp: new FormControl('', [Validators.min(15), Validators.required]),
       cpf: new FormControl('', [Validators.required]),
       nCalcado: new FormControl('', [Validators.required]),
       nJeans: new FormControl('', [Validators.required]),
@@ -70,6 +72,15 @@ export class CadastroClienteComponent implements OnInit {
       })
     });
 
+  }
+
+  save(): void {
+    if (this.form.valid && !this.sendLoading) {
+      this.sendLoading = true;
+      console.log(this.form);
+    } else {
+      this.validateAllFormFields(this.form);
+    }
   }
 
   //remover este metodo
@@ -165,14 +176,13 @@ export class CadastroClienteComponent implements OnInit {
 
   }
 
-  save(): void {
-
-    if (this.form.valid) {
-      console.log(this.form);
-    } else {
-      this.validateAllFormFields(this.form);
+  setLoading(option: boolean){
+    this.sendLoading = option;
+    if(option){
+      this.form.disable();
+    }else{
+      this.form.enable();
     }
-
   }
 
   isFieldValid(field: string) {

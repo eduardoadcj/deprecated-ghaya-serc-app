@@ -282,8 +282,11 @@
 
                 <hr class="mb-4">
 
-                <button class="rounded-component btn btn-secondary btn-lg btn-block color-pink"
-                    type="submit">Enviar</button>
+                <button class="rounded-component btn btn-secondary btn-lg btn-block color-pink" type="submit">
+                    <span *ngIf="sendLoading == true" class="spinner-border spinner-border-md" role="status"
+                        aria-hidden="true"></span>
+                    <span *ngIf="sendLoading == false">Enviar</span>
+                </button>
 
             </form>
         </div>
