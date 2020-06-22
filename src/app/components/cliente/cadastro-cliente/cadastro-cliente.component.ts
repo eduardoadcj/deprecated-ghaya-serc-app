@@ -114,7 +114,7 @@ export class CadastroClienteComponent implements OnInit {
     this.viaCepService.getEnderecoByCep(cep).subscribe((endereco: ViaEndereco) => {
 
       if (endereco.erro) {
-        this.form.get('enderecoCasa.cep').setErrors({'error': true})
+        this.form.get('enderecoCasa.cep').setErrors({ 'error': true })
         return;
       }
 
@@ -145,7 +145,7 @@ export class CadastroClienteComponent implements OnInit {
     this.viaCepService.getEnderecoByCep(cep).subscribe((endereco: ViaEndereco) => {
 
       if (endereco.erro) {
-        this.form.get('enderecoTrabalho.cep').setErrors({'error': true})
+        this.form.get('enderecoTrabalho.cep').setErrors({ 'error': true })
         return;
       }
 
