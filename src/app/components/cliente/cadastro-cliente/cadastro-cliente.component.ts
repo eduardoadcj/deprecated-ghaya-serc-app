@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Cidade } from 'src/app/services/cidade-estado/model/cidade';
 import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
 import { ViaEndereco } from 'src/app/services/via-cep/model/via-endereco';
+import { AngularBasicValidators } from 'src/app/util/validators/angular-basic-validators';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -48,7 +49,7 @@ export class CadastroClienteComponent implements OnInit {
       nome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.email]),
       whatsapp: new FormControl('', [Validators.min(15), Validators.required]),
-      cpf: new FormControl('', [Validators.required]),
+      cpf: new FormControl('', [Validators.required, AngularBasicValidators.cpf]),
       nCalcado: new FormControl('', [Validators.required]),
       nJeans: new FormControl('', [Validators.required]),
       dataNascimento: new FormControl('', [Validators.required]),
