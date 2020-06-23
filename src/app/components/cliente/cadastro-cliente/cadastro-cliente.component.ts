@@ -48,11 +48,11 @@ export class CadastroClienteComponent implements OnInit {
     this.form = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.email]),
-      whatsapp: new FormControl('', [Validators.min(15), Validators.required]),
+      whatsapp: new FormControl('', [Validators.minLength(11), Validators.required]),
       cpf: new FormControl('', [Validators.required, AngularBasicValidators.cpf]),
       nCalcado: new FormControl('', [Validators.required]),
       nJeans: new FormControl('', [Validators.required]),
-      dataNascimento: new FormControl('', [Validators.required]),
+      dataNascimento: new FormControl('', [Validators.required, AngularBasicValidators.birthdate]),
       enderecoCasa: this.formBuilder.group({
         cep: new FormControl(''),
         estado: new FormControl('', [Validators.required]),
