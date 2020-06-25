@@ -28,6 +28,7 @@ import { CidadeEstadoService } from './services/cidade-estado/cidade-estado.serv
 import { ViaCepService } from './services/via-cep/via-cep.service';
 import { ClienteService } from './services/api/cliente.service';
 import { EnderecoService } from './services/api/endereco.service';
+import { SuccessComponent } from './components/cliente/success/success.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { EnderecoService } from './services/api/endereco.service';
     ViewClienteComponent,
     EditClienteComponent,
     Error404Component,
-    MaintenanceComponent
+    MaintenanceComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

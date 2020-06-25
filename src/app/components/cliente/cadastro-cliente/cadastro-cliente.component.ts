@@ -124,6 +124,8 @@ export class CadastroClienteComponent implements OnInit {
       this.setLoading(false);
       if (err) {
         this.throwError(err);
+      }else{
+        this.router.navigate(['success']);
       }
     })
   }
