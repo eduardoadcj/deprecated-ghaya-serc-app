@@ -73,12 +73,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let value of preenchedor">
-            <td>Eduardo Augusto da Cruz Junior</td>
-            <td>(44) 99924-0044</td>
-            <td>105.136.689-50</td>
-            <td>40</td>
-            <td>46</td>
+          <tr *ngFor="let cliente of clientes">
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.whatsapp}}</td>
+            <td>{{cliente.cpf}}</td>
+            <td>{{cliente.numeroCalcado}}</td>
+            <td>{{cliente.numeroJeans}}</td>
             <td style="width: 42px">
               <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#viewModal">
                 <fa-icon [icon]="faEye"></fa-icon>

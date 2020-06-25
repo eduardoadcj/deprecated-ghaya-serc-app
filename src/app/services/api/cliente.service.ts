@@ -3,7 +3,7 @@ import { SecurityService } from 'src/app/core/security/security.service';
 import { Cliente } from 'src/app/model/cliente';
 import { Endereco } from 'src/app/model/endereco';
 import { api } from '../../app.config';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { EnderecoService } from './endereco.service';
 
@@ -31,41 +31,41 @@ export class ClienteService {
         .pipe(take(1))
         .subscribe(
           data => {
-            
-            if(!data){
+
+            if (!data) {
               onComplete({ error: 'null data' });
               return;
             }
-            
+
             //trecho de código mal estruturado
             let enderecoCasa = enderecos[0];
             enderecoCasa.cliente = data;
             this.enderecoService.save(enderecoCasa, err => {
-              if(err){
+              if (err) {
                 onComplete(err);
               }
-              if(enderecos.length === 2){
+              if (enderecos.length === 2) {
                 let enderecoTrabalho = enderecos[1];
                 enderecoTrabalho.cliente = data;
                 this.enderecoService.save(enderecoTrabalho, err => {
-                  if(err){
+                  if (err) {
                     onComplete(err);
-                  }else{
+                  } else {
                     onComplete();
                   }
                 })
-              }else{
+              } else {
                 onComplete();
               }
             });
 
           },
           err => {
-            if(err.error.error === 'invalid_token'){
+            if (err.error.error === 'invalid_token') {
               this.security.logout();
               cliente.enderecos = enderecos;
               this.save(cliente, onComplete);
-            }else{
+            } else {
               onComplete(err);
             }
           }
@@ -73,6 +73,34 @@ export class ClienteService {
 
     });
 
+  }
+
+  get(page: number, onComplete) {
+    this.security.getToken(token => {
+
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+
+      this.http.get<Cliente[]>(this.URL+"?page="+page, { observe: 'response', headers: headers })
+        .pipe(take(1))
+        .subscribe(
+          data => {
+            onComplete({
+              data: data.body,
+              xTotalCount: data.headers.get('X-Total-Count')
+            });
+          },
+          err => {
+            if (err.error.error === 'invalid_token') {
+              this.security.logout();
+              this.get(page, onComplete);
+            }else{
+              onComplete({error: err});
+            }
+          });
+
+    })
   }
 
 }

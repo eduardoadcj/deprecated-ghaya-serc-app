@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { ClienteService } from 'src/app/services/api/cliente.service';
+import { Cliente } from 'src/app/model/cliente';
 
 @Component({
   selector: 'app-relatorio-cliente',
@@ -12,27 +14,41 @@ export class RelatorioClienteComponent implements OnInit {
   faSearch = faSearch;
   faEye = faEye;
 
-  preenchedor = new Array();
+  xTotalCount: number;
+  currentPage: number = 0;
+  clientes = new Array<Cliente>();
 
   throttle = 300;
   scrollDistance = 1;
   scrollUpDistance = 2;
 
-  constructor() { 
-
-    for(let i = 0; i < 100; i++){
-      this.preenchedor.push('');
-    }
-
-  }
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.clienteService.get(0, (response) => {
+      if(response.error){
+        console.log(response.error);
+      }else{
+        this.xTotalCount = response.xTotalCount;
+        response.data.forEach(cliente => this.clientes.push(cliente));
+      }
+    });
   }
 
   onScrollDown(){
-    console.log('Chego no final do scroll');
+    if(this.currentPage < this.xTotalCount / 25 - 1){
+      this.currentPage++;
+      this.clienteService.get(this.currentPage, (response) => {
+        if(response.error){
+          console.log(response.error);
+        }else{
+          this.xTotalCount = response.xTotalCount;
+          response.data.forEach(cliente => this.clientes.push(cliente));
+        }
+      });
+    }else{
+      console.log('chego no final');
+    }
   }
-
-  //https://www.npmjs.com/package/ngx-infinite-scroll
 
 }
