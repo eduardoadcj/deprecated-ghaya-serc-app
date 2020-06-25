@@ -17,7 +17,7 @@
         <div class="col-md-8 order-md-1 mb-4">
             <h4 class="mb-3">Informações sobre você</h4>
 
-            <form class="needs-validation" [formGroup]="form" (ngSubmit)="save()" novalidate>
+            <form class="needs-validation" [formGroup]="form" (ngSubmit)="attemptRegister()" novalidate>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="nome">Seu nome completo:</label>
@@ -31,7 +31,7 @@
 
                 <div class="mb-3">
                     <label for="email">Seu email: <span class="text-muted">(Opcional)</span></label>
-                    <input formControlName="nome" type="email" class="rounded-component formated-input form-control"
+                    <input formControlName="email" type="email" class="rounded-component formated-input form-control"
                         id="email" placeholder="email@exemplo.com" [ngClass]="displayFieldCss('email')">
                     <div class="invalid-feedback">
                         Informe um email válido.
@@ -190,7 +190,7 @@
 
                         <div class="col-md-8 mb-3">
                             <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
-                            <input formControlName="complemento" type="text"
+                            <input id="sw" formControlName="complemento" type="text"
                                 class="form-control rounded-component formated-input" id="complementoCasa"
                                 [ngClass]="displayFieldCss('enderecoCasa.numero')">
                         </div>
@@ -199,7 +199,17 @@
 
                 </div>
 
-                <div formGroupName="enderecoTrabalho">
+                <div class="mt-3 switch-container">
+                    <label class="switch">
+                        <input formControlName="getEnderecoTrabalho" type="checkbox" data-toggle="collapse" data-target="#collapseEnderecoTrabalho">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="ml-2 mt-1">
+                        Informe-nos o endereço de seu trabalho.
+                    </label>
+                </div>
+
+                <div formGroupName="enderecoTrabalho" class="collapse" id="collapseEnderecoTrabalho">
 
                     <hr class="mb-4">
 

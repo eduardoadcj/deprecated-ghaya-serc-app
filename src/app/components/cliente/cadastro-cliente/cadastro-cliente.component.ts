@@ -10,6 +10,10 @@ import { Cidade } from 'src/app/services/cidade-estado/model/cidade';
 import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
 import { ViaEndereco } from 'src/app/services/via-cep/model/via-endereco';
 import { AngularBasicValidators } from 'src/app/util/validators/angular-basic-validators';
+import { Cliente } from 'src/app/model/cliente';
+import { DateOperator } from 'src/app/util/operators/date-operator';
+import { Endereco } from 'src/app/model/endereco';
+import { ClienteService } from 'src/app/services/api/cliente.service';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -37,11 +41,10 @@ export class CadastroClienteComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private cidadeEstadoService: CidadeEstadoService,
-    private viaCepService: ViaCepService) { }
+    private viaCepService: ViaCepService,
+    private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-
-    this.checkApiConnection();
 
     this.estados = this.cidadeEstadoService.getEstados();
 
@@ -62,6 +65,7 @@ export class CadastroClienteComponent implements OnInit {
         numero: new FormControl('', [Validators.required]),
         complemento: new FormControl(''),
       }),
+      getEnderecoTrabalho: new FormControl(false),
       enderecoTrabalho: this.formBuilder.group({
         cep: new FormControl(''),
         estado: new FormControl(''),
@@ -75,27 +79,52 @@ export class CadastroClienteComponent implements OnInit {
 
   }
 
-  save(): void {
+  attemptRegister(): void {
     if (this.form.valid && !this.sendLoading) {
       this.sendLoading = true;
-      console.log(this.form);
+      let cliente: Cliente = new Cliente();
+      
+      cliente.nome = this.form.get('nome').value;
+      cliente.email = this.form.get('email').value;
+      cliente.cpf = this.form.get('cpf').value;
+      cliente.whatsapp = this.form.get('whatsapp').value;
+      cliente.nascimento = DateOperator.getDateByString(
+        DateOperator.formatDate(this.form.get('dataNascimento').value));
+      cliente.numeroJeans = this.form.get('nJeans').value;
+      cliente.numeroCalcado = this.form.get('nCalcado').value;
+
+      cliente.enderecos = new Array<Endereco>();
+      
+      let enderecoCasa: Endereco = {
+        titulo: 'casa',
+        ...this.form.get('enderecoCasa').value
+      }
+
+      cliente.enderecos.push(enderecoCasa);
+
+      if(this.form.get('getEnderecoTrabalho').value){
+        let enderecoTrabalho: Endereco = {
+          titulo: 'trabalho',
+          ...this.form.get('enderecoTrabalho').value
+        }
+        cliente.enderecos.push(enderecoTrabalho);
+      }
+
+      this.register(cliente);
+
     } else {
       this.validateAllFormFields(this.form);
     }
   }
 
-  //remover este metodo
-  checkApiConnection(): void {
-    if (!this.security.getToken()) {
-      this.security.login(err => {
-        if (err) {
-          console.log(err);
-          this.router.navigate(['maintenance']);
-          return;
-        }
-        console.log(this.security.getToken());
-      });
-    }
+  register(cliente: Cliente): void{
+    this.clienteService.save(cliente, err => {
+      this.setLoading(false);
+      if(err){
+        console.log(err);
+        alert('Deu merda!');
+      }
+    })
   }
 
   updateCidades(which: string) {
@@ -177,11 +206,11 @@ export class CadastroClienteComponent implements OnInit {
 
   }
 
-  setLoading(option: boolean){
+  setLoading(option: boolean) {
     this.sendLoading = option;
-    if(option){
+    if (option) {
       this.form.disable();
-    }else{
+    } else {
       this.form.enable();
     }
   }
