@@ -33,20 +33,41 @@ export class ClienteService {
           data => {
             
             if(!data){
-              onComplete('null response');
+              onComplete({ error: 'null data' });
               return;
             }
             
-            enderecos.forEach( endereco => {
-              endereco.cliente_id = data.id;
-              this.enderecoService.save(endereco, () => {});
+            //trecho de código mal estruturado
+            let enderecoCasa = enderecos[0];
+            enderecoCasa.cliente = data;
+            this.enderecoService.save(enderecoCasa, err => {
+              if(err){
+                onComplete(err);
+              }
+              if(enderecos.length === 2){
+                let enderecoTrabalho = enderecos[1];
+                enderecoTrabalho.cliente = data;
+                this.enderecoService.save(enderecoTrabalho, err => {
+                  if(err){
+                    onComplete(err);
+                  }else{
+                    onComplete();
+                  }
+                })
+              }else{
+                onComplete();
+              }
             });
-
-            onComplete();
 
           },
           err => {
-            onComplete(err);
+            if(err.error.error === 'invalid_token'){
+              this.security.logout();
+              cliente.enderecos = enderecos;
+              this.save(cliente, onComplete);
+            }else{
+              onComplete(err);
+            }
           }
         );
 

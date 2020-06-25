@@ -1,3 +1,5 @@
+import { Cliente } from './cliente';
+
 export class Endereco {
     id: number;
     titulo: string;
@@ -8,5 +10,5 @@ export class Endereco {
     estado: string;
     estadoUf: string;
     complemento: string;
-    cliente_id: number;
+    cliente: Cliente;
 }
