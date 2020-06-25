@@ -26,6 +26,8 @@ import { Error404Component } from './components/error404/error404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { CidadeEstadoService } from './services/cidade-estado/cidade-estado.service';
 import { ViaCepService } from './services/via-cep/via-cep.service';
+import { ClienteService } from './services/api/cliente.service';
+import { EnderecoService } from './services/api/endereco.service';
 
 
 @NgModule({
@@ -55,7 +57,14 @@ import { ViaCepService } from './services/via-cep/via-cep.service';
     InfiniteScrollModule,
     HttpClientModule
   ],
-  providers: [AuthService, SecurityService, CidadeEstadoService, ViaCepService],
+  providers: [
+    AuthService,
+    SecurityService,
+    CidadeEstadoService,
+    ViaCepService,
+    ClienteService,
+    EnderecoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api, user } from '../../app.config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
+import { Router } from '@angular/router';
 
 interface Token {
   access_token: string;
@@ -14,7 +15,7 @@ interface Token {
 @Injectable()
 export class SecurityService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(onComplete) {
 
@@ -41,8 +42,22 @@ export class SecurityService {
 
   }
 
-  getToken() {
-    return Cookie.get('access_token');
+  getToken(onComplete) {
+    
+    let token = Cookie.get('access_token');
+    if(token){
+      onComplete(token);
+      return; 
+    }
+
+    this.login(err => {
+      if(err){
+        console.log(err);
+        this.router.navigate(['maintenance']);
+      }
+      onComplete(Cookie.get('access_token'));
+    })
+
   }
 
   logout(){
