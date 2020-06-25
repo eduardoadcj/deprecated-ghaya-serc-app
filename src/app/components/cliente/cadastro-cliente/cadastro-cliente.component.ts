@@ -32,6 +32,8 @@ export class CadastroClienteComponent implements OnInit {
   onLoadedCidadeTrabalho = () => { };
 
   sendLoading: boolean = false;
+  errorMessage: string;
+  showError: boolean = false;
 
   estados: Observable<Estado[]>;
   cidadesCasa: Observable<Cidade[]>;
@@ -83,7 +85,7 @@ export class CadastroClienteComponent implements OnInit {
     if (this.form.valid && !this.sendLoading) {
       this.sendLoading = true;
       let cliente: Cliente = new Cliente();
-      
+
       cliente.nome = this.form.get('nome').value;
       cliente.email = this.form.get('email').value;
       cliente.cpf = this.form.get('cpf').value;
@@ -94,7 +96,7 @@ export class CadastroClienteComponent implements OnInit {
       cliente.numeroCalcado = this.form.get('nCalcado').value;
 
       cliente.enderecos = new Array<Endereco>();
-      
+
       let enderecoCasa: Endereco = {
         titulo: 'casa',
         ...this.form.get('enderecoCasa').value
@@ -102,7 +104,7 @@ export class CadastroClienteComponent implements OnInit {
 
       cliente.enderecos.push(enderecoCasa);
 
-      if(this.form.get('getEnderecoTrabalho').value){
+      if (this.form.get('getEnderecoTrabalho').value) {
         let enderecoTrabalho: Endereco = {
           titulo: 'trabalho',
           ...this.form.get('enderecoTrabalho').value
@@ -117,14 +119,29 @@ export class CadastroClienteComponent implements OnInit {
     }
   }
 
-  register(cliente: Cliente): void{
+  register(cliente: Cliente): void {
     this.clienteService.save(cliente, err => {
       this.setLoading(false);
-      if(err){
-        console.log(err);
-        alert('Deu merda!');
+      if (err) {
+        this.throwError(err);
       }
     })
+  }
+
+  throwError(err) {
+    console.log(err);
+    this.showError = true;
+    let definitionErr = err.error.error;
+    if (err.error.error) {
+      if (definitionErr === 'cpf_already_registered') {
+        this.errorMessage = "Ops... Parece que um cliente com este CPF já foi registrado.";
+        return;
+      } else if (definitionErr === 'validation_error') {
+        this.errorMessage = "Ops... Parece que as informações preenchidas estão inválidas.";
+        return;
+      }
+    }
+    this.errorMessage = "Houve um erro ao enviar suas informações!";
   }
 
   updateCidades(which: string) {
