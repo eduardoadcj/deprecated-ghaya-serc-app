@@ -3,6 +3,7 @@ import { faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { ClienteService } from 'src/app/services/api/cliente.service';
 import { Cliente } from 'src/app/model/cliente';
+import { MaskOperator } from 'src/app/util/operators/mask-operator';
 
 @Component({
   selector: 'app-relatorio-cliente',
@@ -10,6 +11,8 @@ import { Cliente } from 'src/app/model/cliente';
   styleUrls: ['./relatorio-cliente.component.css']
 })
 export class RelatorioClienteComponent implements OnInit {
+
+  maskOperator: MaskOperator = new MaskOperator();
 
   faSearch = faSearch;
   faEye = faEye;

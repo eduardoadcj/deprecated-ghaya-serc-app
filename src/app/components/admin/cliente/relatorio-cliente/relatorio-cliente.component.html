@@ -75,8 +75,8 @@
         <tbody>
           <tr *ngFor="let cliente of clientes">
             <td>{{cliente.nome}}</td>
-            <td>{{cliente.whatsapp}}</td>
-            <td>{{cliente.cpf}}</td>
+            <td>{{maskOperator.formatPhone(cliente.whatsapp)}}</td>
+            <td>{{maskOperator.formatCpf(cliente.cpf)}}</td>
             <td>{{cliente.numeroCalcado}}</td>
             <td>{{cliente.numeroJeans}}</td>
             <td style="width: 42px">
