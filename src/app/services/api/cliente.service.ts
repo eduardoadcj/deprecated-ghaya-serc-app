@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { SecurityService } from 'src/app/core/security/security.service';
 import { Cliente } from 'src/app/model/cliente';
-import { Endereco } from 'src/app/model/endereco';
 import { api } from '../../app.config';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { EnderecoService } from './endereco.service';
+
+interface Query {
+  nome: string;
+  numeroCalcado: string;
+  numeroJeans: string;
+}
 
 @Injectable()
 export class ClienteService {
@@ -82,7 +87,9 @@ export class ClienteService {
         'Authorization': 'Bearer ' + token
       });
 
-      this.http.get<Cliente[]>(this.URL+"?page="+page, { observe: 'response', headers: headers })
+      let params = new HttpParams().set('page', String(page));
+
+      this.http.get<Cliente[]>(this.URL, { observe: 'response', headers: headers, params: params })
         .pipe(take(1))
         .subscribe(
           data => {
@@ -100,7 +107,41 @@ export class ClienteService {
             }
           });
 
-    })
+    });
+  }
+
+  getConsulta(page: number, query: Query, onComplete): void{
+    this.security.getToken(token => {
+
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+
+      let params = new HttpParams();
+      params = params.set('page', String(page));
+      params = params.set('nome', query.nome)
+      params = params.set('numeroCalcado', query.numeroCalcado);
+      params = params.set('numeroJeans', query.numeroJeans);
+
+      this.http.get<Cliente[]>(this.URL+'/consulta', { observe: 'response', headers: headers, params: params })
+        .pipe(take(1))
+        .subscribe(
+          data => {
+            onComplete({
+              data: data.body,
+              xTotalCount: data.headers.get('X-Total-Count')
+            });
+          },
+          err => {
+            if (err.error.error === 'invalid_token') {
+              this.security.logout();
+              this.get(page, onComplete);
+            }else{
+              onComplete({error: err});
+            }
+          });
+
+    });
   }
 
 }

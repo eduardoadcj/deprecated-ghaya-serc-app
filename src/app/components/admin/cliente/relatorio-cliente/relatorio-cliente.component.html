@@ -9,10 +9,10 @@
 
         <div class="input-group mr-2">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Nº Calçado</label>
+            <label class="input-group-text" for="nCalcadoSelect">Nº Calçado</label>
           </div>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Todos</option>
+          <select class="custom-select" id="nCalcadoSelect" [(ngModel)]="nCalcado">
+            <option selected value="">Todos</option>
             <option>33</option>
             <option>34</option>
             <option>35</option>
@@ -26,10 +26,10 @@
 
         <div class="input-group mr-2">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Nº Jeans</label>
+            <label class="input-group-text" for="nJeansSelect">Nº Jeans</label>
           </div>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Todos</option>
+          <select class="custom-select" id="nJeansSelect" [(ngModel)]="nJeans">
+            <option selected value="">Todos</option>
             <option>34</option>
             <option>36</option>
             <option>38</option>
@@ -46,9 +46,9 @@
         </div>
 
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Nome do cliente">
+          <input type="text" class="form-control" placeholder="Nome do cliente" [(ngModel)]="nome">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">
+            <button class="btn btn-outline-secondary" type="button" (click)="setUpConsulta()">
               <fa-icon [icon]="faSearch" class="mr-2"></fa-icon>
               Buscar
             </button>

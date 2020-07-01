@@ -25,33 +25,75 @@ export class RelatorioClienteComponent implements OnInit {
   scrollDistance = 1;
   scrollUpDistance = 2;
 
+  nome: string;
+  nCalcado: string;
+  nJeans: string;
+
+  queryNome: string;
+  queryNCalcado: string;
+  queryNJeans: string;
+
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.clienteService.get(0, (response) => {
-      if(response.error){
-        console.log(response.error);
-      }else{
-        this.xTotalCount = response.xTotalCount;
-        response.data.forEach(cliente => this.clientes.push(cliente));
-      }
-    });
+    this.loadList();
   }
 
-  onScrollDown(){
-    if(this.currentPage < this.xTotalCount / 25 - 1){
+  onScrollDown() {
+    if (this.currentPage < this.xTotalCount / 25 - 1) {
       this.currentPage++;
+      this.loadList();
+    }
+  }
+
+  loadList(): void {
+
+    if (!this.queryNome && !this.queryNJeans && !this.queryNCalcado) {
+
       this.clienteService.get(this.currentPage, (response) => {
-        if(response.error){
+        if (response.error) {
           console.log(response.error);
-        }else{
+        } else {
           this.xTotalCount = response.xTotalCount;
           response.data.forEach(cliente => this.clientes.push(cliente));
         }
       });
-    }else{
-      console.log('chego no final');
+
+    } else {
+
+      this.clienteService.getConsulta(this.currentPage, {
+        nome: this.queryNome,
+        numeroCalcado: this.queryNCalcado,
+        numeroJeans: this.queryNJeans
+      }, (response) => {
+        if (response.error) {
+          console.log(response.error);
+        } else {
+          this.xTotalCount = response.xTotalCount;
+          response.data.forEach(cliente => this.clientes.push(cliente));
+        }
+      });
+
     }
+
+  }
+
+  setUpConsulta(): void {
+
+    if (!this.nome && !this.nCalcado && !this.nJeans) {
+      return;
+    }
+
+    this.clientes = [];
+
+    this.queryNome = this.nome ? this.nome : '';
+    this.queryNCalcado = this.nCalcado ? this.nCalcado : '';
+    this.queryNJeans = this.nJeans ? this.nJeans : '';
+
+    this.currentPage = 0;
+
+    this.loadList();
+
   }
 
 }
