@@ -38,6 +38,9 @@ export class RelatorioClienteComponent implements OnInit {
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.nome = '';
+    this.nCalcado = '';
+    this.nJeans = '';
     this.loadList();
   }
 
@@ -82,10 +85,6 @@ export class RelatorioClienteComponent implements OnInit {
 
   setUpConsulta(): void {
 
-    if (!this.nome && !this.nCalcado && !this.nJeans) {
-      return;
-    }
-
     this.clientes = [];
 
     this.queryNome = this.nome ? this.nome : '';
@@ -98,7 +97,7 @@ export class RelatorioClienteComponent implements OnInit {
 
   }
 
-  setSelectedCliente(cliente: Cliente){
+  setSelectedCliente(cliente: Cliente) {
     this.selectedCliente = cliente;
   }
 
