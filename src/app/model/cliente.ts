@@ -9,5 +9,6 @@ export class Cliente{
     numeroJeans: string;
     cpf: string;
     nascimento: Date;
+    dataRegistro: Date;
     enderecos: Endereco[];
 }

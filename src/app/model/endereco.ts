@@ -5,10 +5,10 @@ export class Endereco {
     titulo: string;
     numero: string;
     bairro: string;
+    rua: string;
     cep: string;
     cidade: string;
     estado: string;
-    estadoUf: string;
     complemento: string;
     cliente: Cliente;
 }
