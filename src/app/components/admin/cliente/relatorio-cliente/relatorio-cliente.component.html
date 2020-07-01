@@ -80,7 +80,8 @@
             <td>{{cliente.numeroCalcado}}</td>
             <td>{{cliente.numeroJeans}}</td>
             <td style="width: 42px">
-              <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#viewModal" (click)="setSelectedCliente(cliente)">
+              <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#viewModal"
+                (click)="setSelectedCliente(cliente)">
                 <fa-icon [icon]="faEye"></fa-icon>
               </button>
             </td>
@@ -88,6 +89,12 @@
         </tbody>
       </table>
 
+    </div>
+
+    <div *ngIf="isLoading" class="bg-light loading-bottom">
+      <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
 
   </main>

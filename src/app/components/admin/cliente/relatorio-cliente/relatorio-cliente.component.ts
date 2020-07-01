@@ -35,6 +35,8 @@ export class RelatorioClienteComponent implements OnInit {
 
   selectedCliente: Cliente = new Cliente();
 
+  isLoading: boolean = false;
+
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
@@ -53,9 +55,12 @@ export class RelatorioClienteComponent implements OnInit {
 
   loadList(): void {
 
+    this.isLoading = true;
+
     if (!this.queryNome && !this.queryNJeans && !this.queryNCalcado) {
 
       this.clienteService.get(this.currentPage, (response) => {
+        this.isLoading = false;
         if (response.error) {
           console.log(response.error);
         } else {
@@ -71,6 +76,7 @@ export class RelatorioClienteComponent implements OnInit {
         numeroCalcado: this.queryNCalcado,
         numeroJeans: this.queryNJeans
       }, (response) => {
+        this.isLoading = false;
         if (response.error) {
           console.log(response.error);
         } else {

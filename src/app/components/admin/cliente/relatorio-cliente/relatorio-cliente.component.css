@@ -1,3 +1,19 @@
-tr{
+tr {
    vertical-align: center;
+}
+
+.loading-bottom {
+   position: fixed;
+   bottom: 10px;
+   right: 10px;
+   padding: 10px;
+   border-radius: 100%;
+}
+
+.loading-bottom .spinner-border {
+   height: 40px;
+   width: 40px;
+   display: flex;
+   text-align: center;
+   margin: auto;
 }
