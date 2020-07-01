@@ -11,6 +11,18 @@ export class DateOperator {
         return new Date(year+'-'+month+'-'+day+' 00:00');
     }
 
-    
+    public printDate(date: Date): string{
+        if(!date){
+            return '';
+        }
+        return new Date(date).toLocaleDateString();
+    }
+
+    public printDateTime(date: Date): string{
+        if(!date){
+            return '';
+        }
+        return new Date(date).toLocaleString();
+    }
 
 }

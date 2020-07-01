@@ -33,6 +33,8 @@ export class RelatorioClienteComponent implements OnInit {
   queryNCalcado: string;
   queryNJeans: string;
 
+  selectedCliente: Cliente = new Cliente();
+
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
@@ -94,6 +96,10 @@ export class RelatorioClienteComponent implements OnInit {
 
     this.loadList();
 
+  }
+
+  setSelectedCliente(cliente: Cliente){
+    this.selectedCliente = cliente;
   }
 
 }
