@@ -26,6 +26,8 @@ export class CadastroClienteComponent implements OnInit {
   faWhatsapp = faWhatsapp;
   faFacebook = faFacebook;
 
+  dateOperator: DateOperator = new DateOperator();
+
   form: FormGroup;
 
   onLoadedCidadeCasa = () => { };
@@ -90,8 +92,8 @@ export class CadastroClienteComponent implements OnInit {
       cliente.email = this.form.get('email').value;
       cliente.cpf = this.form.get('cpf').value;
       cliente.whatsapp = this.form.get('whatsapp').value;
-      cliente.nascimento = DateOperator.getDateByString(
-        DateOperator.formatDate(this.form.get('dataNascimento').value));
+      cliente.nascimento = this.dateOperator.getDateByString(
+        this.dateOperator.formatDate(this.form.get('dataNascimento').value));
       cliente.numeroJeans = this.form.get('nJeans').value;
       cliente.numeroCalcado = this.form.get('nCalcado').value;
 
