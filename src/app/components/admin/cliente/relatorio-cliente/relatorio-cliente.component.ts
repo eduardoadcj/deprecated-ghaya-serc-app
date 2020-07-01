@@ -36,6 +36,7 @@ export class RelatorioClienteComponent implements OnInit {
   selectedCliente: Cliente = new Cliente();
 
   isLoading: boolean = false;
+  error: string;
 
   constructor(private clienteService: ClienteService) { }
 
@@ -62,8 +63,10 @@ export class RelatorioClienteComponent implements OnInit {
       this.clienteService.get(this.currentPage, (response) => {
         this.isLoading = false;
         if (response.error) {
+          this.error = 'Falha ao buscar clientes!';
           console.log(response.error);
         } else {
+          this.error = '';
           this.xTotalCount = response.xTotalCount;
           response.data.forEach(cliente => this.clientes.push(cliente));
         }
@@ -78,8 +81,10 @@ export class RelatorioClienteComponent implements OnInit {
       }, (response) => {
         this.isLoading = false;
         if (response.error) {
+          this.error = 'Falha ao buscar clientes!';
           console.log(response.error);
         } else {
+          this.error = '';
           this.xTotalCount = response.xTotalCount;
           response.data.forEach(cliente => this.clientes.push(cliente));
         }
@@ -90,7 +95,6 @@ export class RelatorioClienteComponent implements OnInit {
   }
 
   setUpConsulta(): void {
-
     this.clientes = [];
 
     this.queryNome = this.nome ? this.nome : '';
@@ -100,7 +104,6 @@ export class RelatorioClienteComponent implements OnInit {
     this.currentPage = 0;
 
     this.loadList();
-
   }
 
   setSelectedCliente(cliente: Cliente) {
