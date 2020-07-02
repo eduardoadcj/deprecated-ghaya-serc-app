@@ -66,7 +66,7 @@ export class ClienteService {
 
           },
           err => {
-            if (err.error.error === 'invalid_token') {
+            if (err.error && err.error.error === 'invalid_token') {
               this.security.logout();
               cliente.enderecos = enderecos;
               this.save(cliente, onComplete);
@@ -99,18 +99,18 @@ export class ClienteService {
             });
           },
           err => {
-            if (err.error.error === 'invalid_token') {
+            if (err.error && err.error.error === 'invalid_token') {
               this.security.logout();
               this.get(page, onComplete);
-            }else{
-              onComplete({error: err});
+            } else {
+              onComplete({ error: err });
             }
           });
 
     });
   }
 
-  getConsulta(page: number, query: Query, onComplete): void{
+  getConsulta(page: number, query: Query, onComplete): void {
     this.security.getToken(token => {
 
       let headers = new HttpHeaders({
@@ -123,7 +123,7 @@ export class ClienteService {
       params = params.set('numeroCalcado', query.numeroCalcado);
       params = params.set('numeroJeans', query.numeroJeans);
 
-      this.http.get<Cliente[]>(this.URL+'/consulta', { observe: 'response', headers: headers, params: params })
+      this.http.get<Cliente[]>(this.URL + '/consulta', { observe: 'response', headers: headers, params: params })
         .pipe(take(1))
         .subscribe(
           data => {
@@ -133,13 +133,39 @@ export class ClienteService {
             });
           },
           err => {
-            if (err.error.error === 'invalid_token') {
+            if (err.error && err.error.error === 'invalid_token') {
               this.security.logout();
               this.get(page, onComplete);
-            }else{
-              onComplete({error: err});
+            } else {
+              onComplete({ error: err });
             }
           });
+
+    });
+  }
+
+  getById(id: number, onComplete) {
+    this.security.getToken(token => {
+
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+
+      this.http.get<Cliente[]>(this.URL + "/id/" + id, { headers: headers })
+        .pipe(take(1))
+        .subscribe(
+          data => {
+            onComplete({ data: data })
+          },
+          err => {
+            if (err.error && err.error.error === 'invalid_token') {
+              this.security.logout();
+              this.getById(id, onComplete);
+            } else {
+              onComplete({ error: err });
+            }
+          }
+        )
 
     });
   }

@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'login', component: UserLoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'clientes', component: RelatorioClienteComponent},
-  {path: 'cliente-edit', component: EditClienteComponent},
+  {path: 'cliente-edit/:id', component: EditClienteComponent},
   {path: '**', component: Error404Component}
 ];
 
