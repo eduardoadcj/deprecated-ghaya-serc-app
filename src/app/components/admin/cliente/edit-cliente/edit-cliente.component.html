@@ -16,22 +16,22 @@
         <h5 class="text-muted">Selecione a seta no canto superior esquerdo para voltar.</h5>
     </div>
 
-    <form *ngIf="!error" class="needs-validation m-2">
+    <form *ngIf="!error" class="needs-validation m-2 p-3" [formGroup]="form" (ngSubmit)="attemptRegister()" novalidate>
         <div class="row mt-3">
             <div class="col mb-3">
                 <label for="nome">Nome:</label>
-                <input type="text" class="  form-control" id="nome" placeholder=""
-                    value="" required>
+                <input formControlName="nome" type="text" class="rounded-component formated-input form-control "
+                    id="nome" placeholder="" value="" required autofocus [ngClass]="displayFieldCss('nome')">
                 <div class="invalid-feedback">
-                    O nome deve ser preenchido!
+                    Informe um nome.
                 </div>
             </div>
         </div>
 
         <div class="mb-3">
             <label for="email">Email: <span class="text-muted">(Opcional)</span></label>
-            <input type="email" class="  form-control" id="email"
-                placeholder="email@exemplo.com">
+            <input formControlName="email" type="email" class="rounded-component formated-input form-control" id="email"
+                placeholder="email@exemplo.com" [ngClass]="displayFieldCss('email')">
             <div class="invalid-feedback">
                 Informe um email válido.
             </div>
@@ -39,27 +39,30 @@
 
         <div class="mb-3">
             <label for="whatsapp">Whatsapp:</label>
-            <input mask="(00) 00000-0000" type="text" class="form-control"
-                id="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
+            <input formControlName="whatsapp" mask="(00) 00000-0000" type="text"
+                class="form-control rounded-component formated-input" id="whatsapp" placeholder="(XX) XXXXX-XXXX"
+                required [ngClass]="displayFieldCss('whatsapp')">
             <div class="invalid-feedback">
-                Informe o seu número whatsapp
+                Informe um Whatsapp válido.
             </div>
         </div>
 
         <div class="mb-3">
             <label for="cpf">CPF:</label>
-            <input mask="000.000.000-00" type="text" class="form-control" id="cpf"
-                placeholder="XXX.XXX.XXX-XX" required>
+            <input formControlName="cpf" mask="000.000.000-00" type="text"
+                class="form-control rounded-component formated-input" id="cpf" placeholder="XXX.XXX.XXX-XX" required
+                [ngClass]="displayFieldCss('cpf')">
             <div class="invalid-feedback">
-                Informe o seu CPF
+                Informe um CPF válido.
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="numeroCalcado">Nº Calçado:</label>
-                <select class="  custom-select d-block w-100" id="numeroCalcado"
-                    required>
+                <label for="numeroCalcado">Nº Calçado</label>
+                <select formControlName="nCalcado"
+                    class="rounded-component formated-select custom-select d-block w-100 " id="numeroCalcado" required
+                    [ngClass]="displayFieldCss('nCalcado')">
                     <option value="">Escolher...</option>
                     <option>33</option>
                     <option>34</option>
@@ -70,13 +73,11 @@
                     <option>39</option>
                     <option>40</option>
                 </select>
-                <div class="invalid-feedback">
-                    Selecione um número válido.
-                </div>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="numeroJeans">Nº Jeans:</label>
-                <select class="custom-select d-block w-100" id="numeroJeans" required>
+                <label for="numeroJeans">Nº Jeans</label>
+                <select formControlName="nJeans" class="custom-select d-block w-100 rounded-component formated-select"
+                    id="numeroJeans" required [ngClass]="displayFieldCss('nJeans')">
                     <option value="">Escolher...</option>
                     <option>34</option>
                     <option>36</option>
@@ -91,80 +92,102 @@
                     <option>54</option>
                     <option>56</option>
                 </select>
-                <div class="invalid-feedback">
-                    Selecione um número válido.
-                </div>
             </div>
         </div>
 
         <div class="mb-3">
-            <label for="nascimento">Data de nascimento:</label>
-            <input mask="00/00/0000" type="text" class="form-control" id="nascimento"
-                placeholder="XX/XX/XXXX">
+            <label for="nascimento">Data de nascimento</label>
+            <input formControlName="dataNascimento" mask="00/00/0000" type="text"
+                class="form-control rounded-component formated-input" id="nascimento" placeholder="XX/XX/XXXX" required
+                [ngClass]="displayFieldCss('dataNascimento')">
+            <div class="invalid-feedback">
+                Informe uma data válido.
+            </div>
         </div>
 
         <hr class="mb-4">
 
         <h5 class="mb-3">Endereço da casa</h5>
 
-        <div class="row">
+        <div formGroupName="enderecoCasa">
 
-            <div class="col-md-4 mb-3">
-                <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
-                <input mask="00000-000" type="text" class="form-control" id="cepCasa"
-                    placeholder="XXXXX-XXX">
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label for="cepCasa">CEP: <span class="text-muted">(Opcional)</span></label>
+                    <input formControlName="cep" mask="00000-000" type="text"
+                        class="form-control rounded-component formated-input" id="cepCasa" placeholder="XXXXX-XXX"
+                        [ngClass]="displayFieldCss('enderecoCasa.cep')" (input)="searchCepCasa($event.target.value)">
+                    <div class="invalid-feedback">
+                        Informe um CEP válido.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="estadoCasa">Estado: </label>
+                    <select formControlName="estado"
+                        class="custom-select d-block w-100 rounded-component formated-select" id="estadoCasa" required
+                        [ngClass]="displayFieldCss('enderecoCasa.estado')" (change)="updateCidades('casa')">
+                        <option value="">--</option>
+                        <option *ngFor="let estado of estados | async; let last = last">
+                            {{estado.uf}}
+                            {{last ? this.onLoadedEstadoCasa() : ''}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="cidadeCasa">Cidade:</label>
+                    <select formControlName="cidade"
+                        class="custom-select d-block w-100 rounded-component formated-select" id="cidadeCasa" required
+                        [ngClass]="displayFieldCss('enderecoCasa.cidade')">
+                        <option value="">--</option>
+                        <option *ngFor="let cidade of cidadesCasa | async; let last = last">
+                            {{cidade.nome}}
+                            {{last ? this.onLoadedCidadeCasa() : ''}}
+                        </option>
+                    </select>
+                </div>
+
             </div>
 
-            <div class="col-md-2 mb-3">
-                <label for="estadoCasa">Estado: </label>
-                <select class="custom-select d-block w-100" id="estadoCasa" required>
-                    <option value="">--</option>
-                    <option>PR</option>
-                </select>
-                <div class="invalid-feedback">
-                    Selecione um estado válido.
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="bairroCasa">Bairro:</label>
+                    <input formControlName="bairro" type="text" class="form-control rounded-component formated-input"
+                        id="bairroCasa" required [ngClass]="displayFieldCss('enderecoCasa.bairro')">
+                    <div class="invalid-feedback">
+                        Informe seu bairro.
+                    </div>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="ruaCasa">Rua: </label>
+                    <input formControlName="rua" type="text" class="form-control rounded-component formated-input"
+                        id="ruaCasa" required [ngClass]="displayFieldCss('enderecoCasa.rua')">
+                    <div class="invalid-feedback">
+                        Informe sua rua.
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="cidadeCasa">Cidade:</label>
-                <select class="custom-select d-block w-100" id="cidadeCasa" required>
-                    <option value="">--</option>
-                    <option>Paranavaí</option>
-                </select>
-                <div class="invalid-feedback">
-                    Selecione um número válido.
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label for="numeroCasa">Número: </label>
+                    <input formControlName="numero" type="number" class="form-control rounded-component formated-input"
+                        id="numeroCasa" required [ngClass]="displayFieldCss('enderecoCasa.numero')">
+                    <div class="invalid-feedback">
+                        Informe seu número.
+                    </div>
                 </div>
-            </div>
 
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <label for="bairroCasa">Bairro:</label>
-                <input type="text" class="form-control" id="bairroCasa" required>
-                <div class="invalid-feedback">
-                    Informe o seu bairro.
+                <div class="col-md-8 mb-3">
+                    <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
+                    <input id="sw" formControlName="complemento" type="text"
+                        class="form-control rounded-component formated-input" id="complementoCasa"
+                        [ngClass]="displayFieldCss('enderecoCasa.numero')">
                 </div>
-            </div>
-            <div class="col-md-8 mb-3">
-                <label for="ruaCasa">Rua: </label>
-                <input type="text" class="form-control" id="ruaCasa" required>
-                <div class="invalid-feedback">
-                    Informe a sua rua.
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-
-            <div class="col-md-4 mb-3">
-                <label for="numeroCasa">Número: </label>
-                <input type="number" class="form-control" id="numeroCasa">
-            </div>
-
-            <div class="col-md-8 mb-3">
-                <label for="complementoCasa">Complemento: <span class="text-muted">(Opcional)</span></label>
-                <input type="text" class="form-control" id="complementoCasa">
             </div>
 
         </div>
@@ -173,66 +196,77 @@
 
         <h5 class="mb-3">Endereço do trabalho <span class="text-muted">(Opcional)</span></h5>
 
-        <div class="row">
+        <div formGroupName="enderecoTrabalho">
 
-            <div class="col-md-4 mb-3">
-                <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
-                <input mask="00000-000" type="text" class="form-control"
-                    id="cepTrabalho" placeholder="XXXXX-XXX">
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label for="cepTrabalho">CEP: <span class="text-muted">(Opcional)</span></label>
+                    <input formControlName="cep" mask="00000-000" type="text"
+                        class="form-control rounded-component formated-input" id="cepTrabalho" placeholder="XXXXX-XXX"
+                        [ngClass]="displayFieldCss('enderecoTrabalho.cep')"
+                        (input)="searchCepTrabalho($event.target.value)">
+                    <div class="invalid-feedback">
+                        Informe um CEP válido.
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label for="estadoTrabalho">Estado: </label>
+                    <select formControlName="estado"
+                        class="custom-select d-block w-100 rounded-component formated-select" id="estadoTrabalho"
+                        [ngClass]="displayFieldCss('enderecoTrabalho.estado')" (change)="updateCidades('trabalho')">
+                        <option value="">--</option>
+                        <option *ngFor="let estado of estados | async; let last = last">
+                            {{estado.uf}}
+                            {{last ? this.onLoadedEstadoTrabalho() : ''}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="cidadeTrabalho">Cidade:</label>
+                    <select formControlName="cidade"
+                        class="custom-select d-block w-100 rounded-component formated-select" id="cidadeTrabalho"
+                        [ngClass]="displayFieldCss('enderecoTrabalho.cidade')">
+                        <option value="">--</option>
+                        <option *ngFor="let cidade of cidadesTrabalho | async; let last = last">
+                            {{cidade.nome}}
+                            {{last ? this.onLoadedCidadeTrabalho() : ''}}
+                        </option>
+                    </select>
+                </div>
+
             </div>
 
-            <div class="col-md-2 mb-3">
-                <label for="estadoTrabalho">Estado: </label>
-                <select class="custom-select d-block w-100" id="estadoTrabalho"
-                    required>
-                    <option value="">--</option>
-                    <option>PR</option>
-                </select>
-                <div class="invalid-feedback">
-                    Selecione um estado válido.
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="bairroTrabalho">Bairro:</label>
+                    <input formControlName="bairro" type="text" class="form-control rounded-component formated-input"
+                        id="bairroTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.bairro')">
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="ruaTrabalho">Rua: </label>
+                    <input formControlName="rua" type="text" class="form-control rounded-component formated-input"
+                        id="ruaTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.rua')">
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="cidadeTrabalho">Cidade:</label>
-                <select class="custom-select d-block w-100" id="cidadeTrabalho"
-                    required>
-                    <option value="">--</option>
-                    <option>Paranavaí</option>
-                </select>
-                <div class="invalid-feedback">
-                    Selecione um número válido.
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label for="numeroTrabalho">Número: </label>
+                    <input formControlName="numero" type="number" class="form-control rounded-component formated-input"
+                        id="numeroTrabalho" [ngClass]="displayFieldCss('enderecoTrabalho.numero')">
                 </div>
-            </div>
 
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <label for="bairroTrabalho">Bairro:</label>
-                <input type="text" class="form-control" id="bairroTrabalho" required>
-                <div class="invalid-feedback">
-                    Informe o seu bairro.
+                <div class="col-md-8 mb-3">
+                    <label for="complementoTrabalho">Complemento: <span class="text-muted">(Opcional)</span></label>
+                    <input formControlName="complemento" type="text"
+                        class="form-control rounded-component formated-input" id="complementoTrabalho"
+                        [ngClass]="displayFieldCss('enderecoTrabalho.complemento')">
                 </div>
-            </div>
-            <div class="col-md-8 mb-3">
-                <label for="ruaTrabalho">Rua: </label>
-                <input type="text" class="form-control" id="ruaTrabalho" required>
-                <div class="invalid-feedback">
-                    Informe a sua rua.
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-
-            <div class="col-md-4 mb-3">
-                <label for="numeroTrabalho">Número: </label>
-                <input type="number" class="form-control" id="numeroTrabalho">
-            </div>
-
-            <div class="col-md-8 mb-3">
-                <label for="complementoTrabalho">Complemento: <span class="text-muted">(Opcional)</span></label>
-                <input type="text" class="form-control" id="complementoTrabalho">
             </div>
 
         </div>
