@@ -29,6 +29,8 @@ import { ViaCepService } from './services/via-cep/via-cep.service';
 import { ClienteService } from './services/api/cliente.service';
 import { EnderecoService } from './services/api/endereco.service';
 import { SuccessComponent } from './components/cliente/success/success.component';
+import { OptionModalComponent } from './components/util/option-modal/option-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { SuccessComponent } from './components/cliente/success/success.component
     EditClienteComponent,
     Error404Component,
     MaintenanceComponent,
-    SuccessComponent
+    SuccessComponent,
+    OptionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { SuccessComponent } from './components/cliente/success/success.component
     IconsModule,
     FontAwesomeModule,
     InfiniteScrollModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

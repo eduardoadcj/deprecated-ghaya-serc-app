@@ -1,0 +1,17 @@
+<div id="optionModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title">{{message}}</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onComplete(false)">
+                    <fa-icon [icon]="faTimes" class="mr-2"></fa-icon>Não
+                </button>
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="onComplete(true)">
+                    <fa-icon [icon]="faCheck" class="mr-2"></fa-icon>Sim
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

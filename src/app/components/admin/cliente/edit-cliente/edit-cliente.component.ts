@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from 'src/app/services/api/cliente.service';
@@ -12,6 +12,8 @@ import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
 import { AngularBasicValidators } from 'src/app/util/validators/angular-basic-validators';
 import { ViaEndereco } from 'src/app/services/via-cep/model/via-endereco';
 import { DateOperator } from 'src/app/util/operators/date-operator';
+import { Endereco } from 'src/app/model/endereco';
+import { OptionModalComponent } from 'src/app/components/util/option-modal/option-modal.component';
 
 @Component({
   selector: 'app-edit-cliente',
@@ -36,6 +38,9 @@ export class EditClienteComponent implements OnInit {
   onLoadedEstadoTrabalho = () => { }
 
   error: boolean = false;
+  loading: boolean = false;
+
+  @ViewChild(OptionModalComponent) optionModal;
 
   constructor(private activatedRoute: ActivatedRoute,
     private clienteService: ClienteService,
@@ -102,7 +107,7 @@ export class EditClienteComponent implements OnInit {
     this.form.get('cpf').setValue(this.cliente.cpf);
     this.form.get('nCalcado').setValue(this.cliente.numeroCalcado);
     this.form.get('nJeans').setValue(this.cliente.numeroJeans);
-    this.form.get('dataNascimento').setValue(this.dateOperator.printDate(this.cliente.nascimento));
+    this.form.get('dataNascimento').setValue(this.dateOperator.printDate(this.cliente.nascimento).replace('/', ''));
 
     this.estados.subscribe(data => {
 
@@ -150,6 +155,58 @@ export class EditClienteComponent implements OnInit {
 
   attemptRegister(): void {
 
+    if (this.form.valid && !this.loading) {
+      this.loading = true;
+
+      this.optionModal.show("Deseja alterar o cliente?", (result) => {
+        if (result) {
+          this.update(this.getFormData());
+        }
+      });
+
+    } else {
+      this.validateAllFormFields(this.form);
+    }
+
+  }
+
+  getFormData(): Cliente {
+
+    let cliente: Cliente = new Cliente();
+
+    cliente.nome = this.form.get('nome').value;
+    cliente.email = this.form.get('email').value;
+    cliente.cpf = this.form.get('cpf').value;
+    cliente.whatsapp = this.form.get('whatsapp').value;
+    cliente.nascimento = this.dateOperator.getDateByString(
+      this.dateOperator.formatDate(this.form.get('dataNascimento').value));
+    cliente.numeroJeans = this.form.get('nJeans').value;
+    cliente.numeroCalcado = this.form.get('nCalcado').value;
+
+    cliente.enderecos = new Array<Endereco>();
+
+    let enderecoCasa: Endereco = {
+      titulo: 'casa',
+      ...this.form.get('enderecoCasa').value
+    }
+
+    cliente.enderecos.push(enderecoCasa);
+
+    if (this.form.get('getEnderecoTrabalho').value) {
+      let enderecoTrabalho: Endereco = {
+        titulo: 'trabalho',
+        ...this.form.get('enderecoTrabalho').value
+      }
+      cliente.enderecos.push(enderecoTrabalho);
+    }
+
+    return cliente;
+
+  }
+
+  update(cliente: Cliente): void {
+    cliente.id = this.cliente.id;
+    this.loading = false;
   }
 
   updateCidades(which: string) {

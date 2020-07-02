@@ -1,3 +1,4 @@
+<app-option-modal></app-option-modal>
 <main class="container shadow-lg p-3 mb-4 mt-4 bg-white rounded">
 
     <div class="row mt-2">
@@ -273,7 +274,11 @@
 
         <hr class="mb-4">
 
-        <button class=" btn btn-secondary btn-lg btn-block color-pink" type="submit">Alterar</button>
+        <button class="rounded-component btn btn-secondary btn-lg btn-block" type="submit">
+            <span *ngIf="loading == true" class="spinner-border spinner-border-md" role="status"
+                aria-hidden="true"></span>
+            <span *ngIf="loading == false">Alterar</span>
+        </button>
 
     </form>
 

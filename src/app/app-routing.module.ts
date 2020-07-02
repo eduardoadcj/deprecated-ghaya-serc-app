@@ -8,6 +8,7 @@ import { EditClienteComponent } from './components/admin/cliente/edit-cliente/ed
 import { Error404Component } from './components/error404/error404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { SuccessComponent } from './components/cliente/success/success.component';
+import { OptionModalComponent } from './components/util/option-modal/option-modal.component';
 
 const routes: Routes = [
   {path: '', component: CadastroClienteComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'maintenance', component: MaintenanceComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'dashboard', component: DashboardComponent},
+  {path: 'teste', component: OptionModalComponent},
   {path: 'clientes', component: RelatorioClienteComponent},
   {path: 'cliente-edit/:id', component: EditClienteComponent},
   {path: '**', component: Error404Component}
