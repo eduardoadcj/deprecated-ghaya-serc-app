@@ -205,21 +205,34 @@ export class EditClienteComponent implements OnInit {
 
     cliente.enderecos.push(enderecoCasa);
 
-    if (this.form.get('getEnderecoTrabalho').value) {
+    if (this.form.get('enderecoTrabalho').value) {
       let enderecoTrabalho: Endereco = {
         titulo: 'trabalho',
         ...this.form.get('enderecoTrabalho').value
       }
       cliente.enderecos.push(enderecoTrabalho);
     }
-
     return cliente;
 
   }
 
   update(cliente: Cliente): void {
+    
     cliente.id = this.cliente.id;
-    this.loading = false;
+    cliente.enderecos[0].id = this.cliente.enderecos[0].id;
+    if(this.cliente.enderecos.length === 2){
+      cliente.enderecos[1].id = this.cliente.enderecos[1].id;
+    }
+
+    this.clienteService.update(cliente, err => {
+      this.loading = false;
+      if(err) {
+        console.log(err);
+      }else{
+        this.router.navigate(['clientes']);
+      }
+    });
+
   }
 
   delete(): void {

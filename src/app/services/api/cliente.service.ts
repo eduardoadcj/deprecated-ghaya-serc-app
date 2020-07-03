@@ -81,7 +81,65 @@ export class ClienteService {
   }
 
   update(cliente: Cliente, onComplete) {
+    this.security.getToken(token => {
 
+      let enderecos = cliente.enderecos;
+      cliente.enderecos = null;
+
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+
+      this.http.put<Cliente>(this.URL + '/' + cliente.id, cliente, { headers: headers })
+        .pipe(take(1))
+        .subscribe(
+          data => {
+
+            let enderecoCasa = enderecos[0];
+            enderecoCasa.cliente = cliente;
+            this.enderecoService.update(enderecoCasa, err => {
+              if (err) {
+                onComplete(err);
+              }
+              if (enderecos.length === 2) {
+                let enderecoTrabalho = enderecos[1];
+                enderecoTrabalho.cliente = cliente;
+                
+                if(enderecoTrabalho.id){
+                  this.enderecoService.update(enderecoTrabalho, err => {
+                    if (err) {
+                      onComplete(err);
+                    } else {
+                      onComplete();
+                    }
+                  });
+                }else{
+                  this.enderecoService.save(enderecoTrabalho, err => {
+                    if (err) {
+                      onComplete(err);
+                    } else {
+                      onComplete();
+                    }
+                  });
+                }
+                
+              } else {
+                onComplete();
+              }
+            });
+
+          },
+          err => {
+            if (err.error && err.error.error === 'invalid_token') {
+              this.security.logout();
+              this.update(cliente, onComplete);
+            } else {
+              onComplete(err);
+            }
+          }
+        );
+
+    })
   }
 
   delete(id: number, onComplete) {

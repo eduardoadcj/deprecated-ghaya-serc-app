@@ -36,4 +36,25 @@ export class EnderecoService {
 
   }
 
+  update(endereco: Endereco, onComplete){
+    this.security.getToken(token => {
+
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+
+      this.http.put<Endereco>(this.URL + '/' + endereco.id, endereco, { headers: headers })
+        .pipe(take(1))
+        .subscribe(
+          data => {
+            onComplete();
+          },
+          err => {
+            onComplete(err)
+          }
+        );
+
+    });
+  }
+
 }
