@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { faArrowLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/api/cliente.service';
 import { Cliente } from 'src/app/model/cliente';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -47,7 +47,8 @@ export class EditClienteComponent implements OnInit {
     private clienteService: ClienteService,
     private formBuilder: FormBuilder,
     private cidadeEstadoService: CidadeEstadoService,
-    private viaCepService: ViaCepService) { }
+    private viaCepService: ViaCepService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -155,7 +156,6 @@ export class EditClienteComponent implements OnInit {
   }
 
   attemptRegister(): void {
-
     if (this.form.valid && !this.loading) {
       this.loading = true;
 
@@ -170,15 +170,14 @@ export class EditClienteComponent implements OnInit {
     } else {
       this.validateAllFormFields(this.form);
     }
-
   }
 
   attemptDelete(): void {
     this.loading = true;
     this.optionModal.show('Deseja excluir o cliente permanentemente?', result => {
-      if(result){
+      if (result) {
         this.delete();
-      }else{ 
+      } else {
         this.loading = false;
       }
     });
@@ -223,16 +222,15 @@ export class EditClienteComponent implements OnInit {
     this.loading = false;
   }
 
-  delete(): void{
+  delete(): void {
     this.clienteService.delete(this.cliente.id, err => {
       this.loading = false;
-      if(err){
+      if (err) {
         console.log(err);
-      }else{
-        console.log('deleto!')
+      } else {
+        this.router.navigate(['clientes']);
       }
     })
-    
   }
 
   updateCidades(which: string) {
