@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from 'src/app/services/api/cliente.service';
 import { Cliente } from 'src/app/model/cliente';
@@ -23,6 +23,7 @@ import { OptionModalComponent } from 'src/app/components/util/option-modal/optio
 export class EditClienteComponent implements OnInit {
 
   faArrowLeft = faArrowLeft;
+  faTrash = faTrash;
 
   dateOperator: DateOperator = new DateOperator();
 

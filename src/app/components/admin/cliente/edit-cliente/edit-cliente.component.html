@@ -17,7 +17,7 @@
         <h5 class="text-muted">Selecione a seta no canto superior esquerdo para voltar.</h5>
     </div>
 
-    <form *ngIf="!error" class="needs-validation m-2 p-3" [formGroup]="form" (ngSubmit)="attemptRegister()" novalidate>
+    <form *ngIf="!error" class="needs-validation mt-2 p-3" [formGroup]="form" (ngSubmit)="attemptRegister()" novalidate>
         <div class="row mt-3">
             <div class="col mb-3">
                 <label for="nome">Nome:</label>
@@ -274,11 +274,23 @@
 
         <hr class="mb-4">
 
-        <button class="rounded-component btn btn-secondary btn-lg btn-block" type="submit">
-            <span *ngIf="loading == true" class="spinner-border spinner-border-md" role="status"
-                aria-hidden="true"></span>
-            <span *ngIf="loading == false">Alterar</span>
-        </button>
+        <div class="row">
+
+            <div class="col-md-10 mb-3">
+                <button class="rounded-component btn btn-secondary btn-lg btn-block" type="submit">
+                    <span *ngIf="loading == true" class="spinner-border spinner-border-md" role="status"
+                        aria-hidden="true"></span>
+                    <span *ngIf="loading == false">Alterar</span>
+                </button>
+            </div>
+
+            <div class="col-md-2 mb-3">
+                <button class="rounded-component btn btn-danger btn-lg btn-block" type="submit">
+                    <fa-icon [icon]="faTrash" class="mr-2"></fa-icon>Excluir
+                </button>
+            </div>
+
+        </div>
 
     </form>
 
