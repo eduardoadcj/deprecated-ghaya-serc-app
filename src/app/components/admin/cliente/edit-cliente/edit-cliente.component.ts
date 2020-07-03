@@ -162,7 +162,7 @@ export class EditClienteComponent implements OnInit {
       this.optionModal.show("Deseja alterar o cliente?", (result) => {
         if (result) {
           this.update(this.getFormData());
-        }else{
+        } else {
           this.loading = false;
         }
       });
@@ -171,6 +171,17 @@ export class EditClienteComponent implements OnInit {
       this.validateAllFormFields(this.form);
     }
 
+  }
+
+  attemptDelete(): void {
+    this.loading = true;
+    this.optionModal.show('Deseja excluir o cliente permanentemente?', result => {
+      if(result){
+        this.delete();
+      }else{ 
+        this.loading = false;
+      }
+    });
   }
 
   getFormData(): Cliente {
@@ -210,6 +221,18 @@ export class EditClienteComponent implements OnInit {
   update(cliente: Cliente): void {
     cliente.id = this.cliente.id;
     this.loading = false;
+  }
+
+  delete(): void{
+    this.clienteService.delete(this.cliente.id, err => {
+      this.loading = false;
+      if(err){
+        console.log(err);
+      }else{
+        console.log('deleto!')
+      }
+    })
+    
   }
 
   updateCidades(which: string) {

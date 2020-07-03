@@ -80,6 +80,36 @@ export class ClienteService {
 
   }
 
+  update(cliente: Cliente, onComplete) {
+
+  }
+
+  delete(id: number, onComplete) {
+    this.security.getToken(token => {
+      
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + token
+      });
+
+      this.http.delete(this.URL + "/" + id, { headers: headers })
+        .pipe(take(1))
+        .subscribe(
+          data => {
+            onComplete();
+          },
+          err => {
+            if (err.error && err.error.error === 'invalid_token') {
+              this.security.logout();
+              this.delete(id, onComplete);
+            } else {
+              onComplete(err);
+            }
+          }
+        )
+
+    });
+  }
+
   get(page: number, onComplete) {
     this.security.getToken(token => {
 
