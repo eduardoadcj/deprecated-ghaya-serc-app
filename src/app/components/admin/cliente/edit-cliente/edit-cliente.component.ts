@@ -162,6 +162,8 @@ export class EditClienteComponent implements OnInit {
       this.optionModal.show("Deseja alterar o cliente?", (result) => {
         if (result) {
           this.update(this.getFormData());
+        }else{
+          this.loading = false;
         }
       });
 
